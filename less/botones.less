@@ -1,0 +1,59 @@
+@import 'variables.less';
+@import 'mixing.less';
+
+/*BOTONES*/
+.btn{
+	.borderRaduis(@botonradio);
+	background-image: none;
+	border-radius: 0px;
+	border: @border solid @secondaryColor;
+	cursor: pointer;
+	font-size: 15px;
+	margin-bottom: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	vertical-align: middle;
+	white-space: nowrap;
+	&:hover,
+	&:focus,
+	&.focus {
+		text-decoration: none;
+	}
+}
+
+// variantes
+
+.btn-default{
+	.button-variant();
+}
+
+.btn-primary{
+	.button-variant(@btn-primary-color, @btn-primary-bg, @btn-primary-border);
+}
+
+// Success appears as green
+.btn-success {
+  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+}
+// Info appears as blue-green
+.btn-info {
+  .button-variant(@btn-info-color; @btn-info-color; @btn-info-border);
+}
+// Warning appears as orange
+.btn-warning {
+  .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+}
+// Danger and error appear as red
+.btn-danger {
+  .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+}
+
+//SI ESTA EN EL HEADER
+.input-group-btn{
+	.btn-default{
+		padding: 5.5px 10px;
+		border-width: 1px;
+	}
+}

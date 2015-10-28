@@ -1,0 +1,29 @@
+<% unread = current_user.unread_notifications.to_a %>
+<div class="noti">
+  <a href="#">
+      <span class="icn notification">
+          <span class="counter"></span>
+      </span>
+  </a>
+  <div class="drop-notifications">
+    <% if unread.empty? %>
+      <p>You don't have notifications</p>
+    <% else %>
+      <% unread.first(7).each do |notification| %>
+        <% if notification.owner_type == "Entry" %>
+          <% notifier_object = Entry.find(notification.owner_id) %>
+          <% repeated = unread.select { |n| n.owner_id == notification.owner_id } %>
+          <% repeated.each { |x| unread.delete(x) } %>
+          <% string = "You have #{pluralize(repeated.count, "new vote")} on the entry #{notifier_object.name}" %>
+          <% path = contest_entry_path(contest_id: notifier_object.contest_id, id: notifier_object.slug) %>
+        <% else %>
+          <% notifier_object = Contest.find(notification.owner_id) %>
+          <% string = "The contest #{notifier_object.name} was closed" %>
+          <% path = contest_path(notifier_object) %>
+        <% end %>
+        <a href="<%= path %>"><%= string %></a>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

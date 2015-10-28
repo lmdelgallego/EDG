@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @membership.user_id %>
+</p>
+
+<p>
+  <strong>Stripe customer:</strong>
+  <%= @membership.stripe_customer_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @membership.status %>
+</p>
+
+<p>
+  <strong>Expiration date:</strong>
+  <%= @membership.expiration_date %>
+</p>
+
+<%= link_to 'Edit', edit_membership_path(@membership) %> |
+<%= link_to 'Back', memberships_path %>

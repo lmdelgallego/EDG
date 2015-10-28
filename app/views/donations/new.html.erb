@@ -1,0 +1,13 @@
+<% content_for (:stripe_js) { javascript_include_tag "https://js.stripe.com/v2/" } %>
+<% content_for (:stripe_meta) { tag :meta, :name => "stripe-key", :content => STRIPE_PUBLISHABLE_KEY } %>
+
+<div class="donate">
+
+	<h1>Donate</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada eros sit amet nulla pellentesque rutrum. Maecenas et luctus nulla. Suspendisse semper dui et volutpat porta. Sed condimentum a magna ac pulvinar.</p>
+
+	<div class="data-zone">
+		<%= render 'form' %>
+	</div>
+
+</div>

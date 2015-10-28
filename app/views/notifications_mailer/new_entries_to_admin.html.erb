@@ -1,0 +1,9 @@
+<h1>Hi <%= @admin.name %></h1>
+<p>Some people have entered new entries on your contests. You can check it out here:</p>
+<ul>
+  <% @contests.each do |contest|%>
+  <% entries = contest.new_entries_count_in_days(@days_ago)  %>
+	 <li><%= link_to contest.name, contest%> has <%= entries%> new <%= "entry".pluralize(entries)%></li>
+  <% end %>
+</ul>
+<p>Have a great day!</p>

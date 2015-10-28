@@ -1,0 +1,14 @@
+<div>
+    <% if user_signed_in? && current_user == @entry.user %>
+        <%= link_to raw('<span class="icn icndelete"></span>'), entry_comment_path(@entry, comment), method: :delete, :class => "delete" %>
+      <% end %>
+  <span class="iconcomment"><%= image_tag comment.user.profile_image_url(:thumb), alt: "", width: "32px", height: "32px" %></span>
+  <h4><%= comment.user.username %></h4>
+  <span>
+    <p>
+      Posted <%= comment.created_at.strftime("%b %d, %Y") %>
+    </p>
+  </span>
+  <span><p><%= comment.message %><p></span>
+</div>
+<br/>

@@ -1,0 +1,273 @@
+/*  
+  Temporary stylesheet.
+  Its main purpose is to provide styles for the new header but the one that is being
+  rendered in the default application layout.
+
+  Once every view is migrated to the new frontend, this should be deleted as the
+  new_front_manifest file would load the necesary styles.
+*/
+
+#searchHeader {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#headerMenu {
+  background-color: #eaefef;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+#headerMenu nav {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  background-image: none;
+  margin-bottom: 0px;
+  border-radius: 0px;
+}
+#headerMenu nav .navbar-nav > li > a {
+  color: #6c7a89;
+  position: relative;
+  display: block;
+}
+#headerMenu nav .navbar-nav > .active > a {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  background-image: none;
+  color: #2ecc71;
+}
+#headerMenu .navbar-brand img {
+  width: 40px;
+  margin-top: -9px;
+}
+#pageContainer {
+  margin-top: 5px;
+}
+.filterList {
+  font-size: 13px;
+  text-align: center;
+}
+.filterList .nav-stacked > li {
+  border: thin solid #dce3e4;
+}
+.filterList .nav-stacked > li > a {
+  color: #6c7a89;
+  font-weight: 200;
+  padding: 10px 15px;
+}
+.nav-pills>li>a{
+  border-radius: 4px;
+}
+.filterList .nav-stacked > li.active > a {
+  border-radius: 0px;
+  color: white;
+  background-color: #6c7a89;
+}
+.filterForm {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.input-group-btn .btn-default {
+  padding: 5.5px 10px;
+  border-width: 1px;
+}
+.form-control {
+  border-radius: 0px;
+}
+
+footer {
+  /*margin-top: 70px;*/
+  padding-bottom: 10px;
+  background-color: #6c7a89;
+  color: #ffffff;
+}
+footer ul,
+footer p {
+  margin-top: 12px;
+}
+footer ul.list-inline > li {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+footer ul.list-inline > li > a,
+footer ul.list-inline > li > a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+footer .copy {
+  text-align: center;
+}
+footer .redes {
+  text-align: center;
+}
+footer .redes img {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+@media (min-width: 992px) {
+  .toRight {
+    float: right !important;
+  }
+  .container {
+    max-width: 1035px;
+  }
+  #searchHeader {
+    height: 51px;
+  }
+  #searchHeader a {
+    font-weight: 300;
+    color: #6c7a89;
+  }
+  #searchHeader ul.signupLink li:last-child {
+    border-left: thin solid #6c7a89;
+    padding-left: 10px;
+  }
+  #headerMenu a.logo-link {
+    color: #2ecc71;
+    display: block;
+    font-size: 24px;
+    font-weight: normal;
+    height: auto;
+    margin-top: -62px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+  }
+  #headerMenu a.logo-link:hover {
+    text-decoration: none;
+  }
+  #headerMenu a.logo-link img {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 62px;
+  }
+  #headerMenu .navbar-collapse {
+    padding: 25px 0px 18px 0px;
+    width: 100%;
+  }
+  #headerMenu .navbar-nav {
+    margin: 0;
+    float: left;
+  }
+  #headerMenu .navbar-nav:last-child li {
+    text-align: right;
+  }
+  #headerMenu .navbar-nav > li {
+    width: 50%;
+  }
+  #headerMenu .navbar-nav.last li:last-child a {
+    padding-right: 0px;
+  }
+  #headerMenu .navbar-nav.toLeft li:first-child a {
+    padding-left: 0px;
+  }
+  #headerMenu .navbar-nav.toRight > li {
+    float: right;
+    clear: right;
+  }
+  #headerMenu .navbar-nav.toRight > li:last-child a {
+    padding-right: 0px;
+  }
+  /* PAGE CONTAINER */
+  #pageContainer {
+    margin-top: 45px;
+  }
+  .filterList .nav-stacked > li + li {
+    margin-top: -1px;
+  }
+  .filterForm {
+    margin-top: 0px;
+    text-align: right;
+  }
+  .filterForm select.form-control {
+    color: #6c7a89;
+    font-size: 13px;
+    height: 40px;
+    width: 192px !important;
+  }
+  @-o-keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-o-keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @-moz-keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  footer {
+    /*margin-top: 70px;*/
+    height: 113px;
+    padding-top: 41px;
+  }
+  footer ul,
+  footer p {
+    margin-top: 12px;
+  }
+  footer ul.list-inline > li {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  footer .redes {
+    padding-right: 5px;
+    text-align: right;
+  }
+}

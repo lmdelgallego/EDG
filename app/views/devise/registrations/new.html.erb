@@ -1,0 +1,98 @@
+<div class="data-zone">
+<span class="text">Sign Up</span>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <!-- Select for premium or free account -->
+  <div>
+  <% @free_plan = Plan.find(1) %>
+
+  <div>
+    <%= f.text_field :username, autofocus: true, :required => true, placeholder: "Username" %>
+  </div> 
+
+  <div>
+    <%= f.text_field :full_name, autofocus: true, :required => true, placeholder: "Name" %>
+  </div> 
+
+  <div>
+    <%= f.email_field :email, autofocus: true, :required => true, :placeholder => "Email" %>
+  </div>
+  <div>
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+  </div>
+  <div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation" %>
+  </div>
+  <%= f.hidden_field :donor, value: false %>
+
+
+  
+  <div class="or-text">
+    <span>Or</span>
+    <span class="line"></span>
+  </div>
+  <div class="login-options">
+    <ul>
+      <li class="facebook">
+      <%= link_to user_omniauth_authorize_path(:facebook, donor: params[:donor], referer_path: params[:referer_path]) do %>
+        <span class="icn fblogin"></span>
+      <% end %>
+      <span>Facebook</span>
+      </li>
+      <li class="twitter">
+        <%= link_to user_omniauth_authorize_path(:twitter, donor: params[:donor], referer_path: params[:referer_path]) do %>
+          <span class="icn twlogin"></span>
+        <% end %>
+        <span>Twitter</span>
+      </li>
+      <li class="linkedin">
+        <%= link_to user_omniauth_authorize_path(:linkedin, donor: params[:donor], referer_path: params[:referer_path]) do %>
+          <span class="icn lkdnlogin"></span>
+        <% end %>
+        <span>Linkedin</span>
+      </li>
+      <li class="googlep">
+        <%= link_to user_omniauth_authorize_path(:google, donor: params[:donor], referer_path: params[:referer_path]) do %>
+          <span class="icn gplogin"></span>
+        <% end %>
+        <span>Google+</span>
+      </li>
+    </ul>
+  </div>
+
+  
+  <%= f.hidden_field :stripe_token  %>
+  
+  <div>
+    <%= f.submit "Sign me up" %>
+  </div>
+<% end %>
+<%= link_to "Become Premium",premium_users_path, class: "btn btn-active" %>
+
+<div class="links-forms-container">
+  <a href="<%= new_user_session_path %>">I already have an account</a>
+</div>
+
+</div>
+
+<!-- Confirmation Success Messagge -->
+<div class="confirmation overlay hide">
+  <div>
+    <div class="step1">
+      <span class="icnprocess"><%= image_tag "icn/icon_process.png", alt: "" %></span>
+      <span class="text">Processing, Please Wait...</span>
+    </div>
+    <div class="step2 hide">
+      <span class="smile"><%= image_tag "icn/icon_smile.png", alt: "" %></span>
+      <span class="text">Thank You!</span>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada eros sit amet nulla pellentesque rutrum. Maecenas et luctus nulla. Suspendisse semper dui et volutpat porta. Sed condimentum a magna ac pulvinar.</p>
+      <a href="#" class="btn btn-active db">Sweet</a>
+    </div>
+    <div class="step3 hide">
+      <span class="smile"><%= image_tag "icn/icon_sad.png", alt: "" %></span>
+      <span class="text">Error, please check again!</span>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada eros sit amet nulla pellentesque rutrum. Maecenas et luctus nulla. Suspendisse semper dui et volutpat porta. Sed condimentum a magna ac pulvinar.</p>
+    </div>
+  </div>
+</div>
+<!-- End Confirmation Success Messagge -->
+

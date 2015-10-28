@@ -1,0 +1,10 @@
+<div class="top-admin-content">
+	<span class="title mt0">Admins (<%= page_entries_info @admins, html: false %>)</span>
+	<div class="search">
+    <%= link_to "Invite", new_admin_invitation_path, class: "btn btn-active" %>
+	</div>
+</div>
+
+<div class="activity users-page">
+  <%= render "admins_list" %>
+</div>

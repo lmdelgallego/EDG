@@ -1,0 +1,20 @@
+<% if activity.owner && activity.trackable %>
+  <div class="list-thumb">
+  	<div>
+  		<div class="thumb-image">
+        <% user = User.find(activity.owner_id) %>
+        <% contest = Contest.find(activity.trackable_id) %>
+        <% if user.profile_image.blank? %>
+          <%= image_tag "icn/icon_uploadimg.png", alt: "", :class => "icnuploadimg" %>
+        <% else %>
+          <%= image_tag(user.profile_image_url(:thumb)) %>
+        <% end %>
+  		</div>
+      <div class="user-time">
+    		<span><%= user.full_name %> posted an <%= link_to "entry", contest_entry_path(contest, id: activity.parameters[:entry_id])%> to <%= link_to contest.name, admin_contest_path(contest) %>
+        </span>
+        <span><%= distance_of_time_in_words(Time.zone.now, activity.created_at, false, { highest_measure_only: true } ) %> ago</span>
+      </div>
+  	</div>
+  </div>
+<% end %>

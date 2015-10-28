@@ -1,0 +1,174 @@
+@import 'variables.less';
+@import 'mixing.less';
+
+/* HOME */
+
+// FILTER LIST
+.filterList{
+	font-size: 13px;
+	text-align: center;
+	.nav-stacked{
+		&>li{
+			border: thin solid @borderColor;
+			&>a{
+				color: @secondaryColor;
+				font-weight: 200;
+				padding: 10px 15px;
+
+			}
+			&.active{
+				&>a{
+					border-radius: 0px;
+					color: white;
+					background-color: @secondaryColor;
+				}
+			}
+		}
+	}
+}
+.filterForm{
+	margin-bottom: 10px;
+	text-align: left;
+}
+// GRID CONTEST
+.postContest{
+	margin-bottom: 30px;
+	overflow: hidden;
+	.title, .descrip{
+		background-color: #F2F5F5;
+	}
+	h3{
+		font-size: 20px;
+	}
+	.imgContest{
+		background-size: cover;
+		background-position: center;
+		width: 100%;
+		height: 229px;
+	}
+	.title{
+		border-bottom: 2px solid #E2E6E7;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		h3{
+			color: @secondaryColor;
+			margin-top: 0px;
+    		margin-bottom: 0px;
+    		white-space: nowrap;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		}
+		small{
+    		margin-bottom: 5px;
+		}
+	}
+	.descrip{
+		h3{
+			margin-top: 10px;
+			font-size: 13px;
+		}
+		.entries{
+			margin-top: 10px;
+			font-size: 12px;
+			span{
+				color: @primaryColor;
+				font-weight: bold;
+			}
+		}
+
+	}
+	.catContest,
+	.finishContest,
+	.tofinishContest{
+		position: absolute;
+		right: 0;
+		padding: 5px 10px;
+		background-color: @primaryColor;
+		color: white;
+		font-weight: bold;
+		text-transform: uppercase;
+		z-index: 1;
+	}
+	.catContest{
+		top: 10px;
+	}
+	.finishContest{
+		top: 64px;
+	}
+	.finishContest i{
+		font-size: 18px;
+	}
+	.tofinishContest{
+		background-color: transparent;
+		border-color: transparent @primaryColor @primaryColor transparent;
+		border-style: solid;
+		border-width: 26px;
+		bottom: 0px;
+		height:0px;
+		padding: 0px;
+		width:0px;
+			i{
+			font-size: 18px;
+			margin-left: 5px;
+		}
+	}
+
+}
+
+.showMore{
+	margin-top: 60px;
+}
+
+
+@media screen and (min-width: 768px), screen and (min-width: 992px) {
+
+// FILTER LIST
+	.filterList{
+		.nav-stacked{
+			&>li+li{
+				margin-top: -1px;
+			}
+		}
+	}
+
+	.filterForm{
+		margin-top: 0px;
+		margin-bottom: 10px;
+		text-align: right;
+		select{
+			&.form-control{
+				color: @textColor;
+				font-size: 13px;
+				height: 40px;
+				width: 192px !important;
+			}
+		}
+	}
+	// GRID CONTEST
+
+	.keyframes(
+		fade-in;
+		{
+			0% { opacity: 0;  }
+			100% { opacity: 1; }
+		}
+	);
+	.keyframes(
+		fade-out;
+		{
+			0% { opacity: 1;  }
+			100% { opacity: 0; }
+		}
+	);
+
+	.postContest{
+		.finishContest{
+			opacity: 0;
+			.animation(fade-out 0.5s ease forwards);
+		}
+		&:hover .finishContest{
+			.animation(fade-in 0.5s ease forwards);
+		}
+	}
+
+}

@@ -1,0 +1,71 @@
+<%= form_for(@contest) do |f| %>
+  <% if @contest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
+
+      <ul>
+      <% @contest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :contest_type, "Type" %><br>
+    <%= f.select :contest_type, [["Image","image"], ["Audio", "audio"], ["Caption", "caption"], ["Text", "text"]], {}, { class: "selectpicker" } %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :additional_details %><br>
+    <%= f.text_area :additional_details %>
+  </div>
+  <div class="field">
+    <%= f.label :judging_criteria %><br>
+    <%= f.text_area :judging_criteria %>
+  </div>
+  <div class="field d">
+    <%= f.label :start_date %><br>
+    <div class="input-group date">
+      <%= f.text_field :start_date, class: "form-control" %>
+      <span class="input-group-addon">
+        <i class="glyphicon glyphicon-th"></i>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :end_time, "End Date" %><br>
+    <div class="input-group date">
+      <%= f.text_field :end_time, class: "form-control" %>
+      <span class="input-group-addon">
+        <i class="glyphicon glyphicon-th"></i>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :reward %><br>
+    <%= f.text_field :reward %>
+  </div>
+  <div class="field">
+    <%= f.label :sponsor %><br>
+    <%= f.text_field :sponsor %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, [["Active", "active"], ["Paused", "paused"], ["Closed", "closed"]], {}, { class: "selectpicker" } %>
+  </div>
+  <div class="field">
+    <%= f.label :private %><br>
+    <%= f.select :private, [["Public", false], ["Private", true]], {}, { class: "selectpicker" } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

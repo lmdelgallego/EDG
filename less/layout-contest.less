@@ -1,0 +1,248 @@
+@import 'variables.less';
+
+/* CONTEST */
+.description-details{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-weight: 100;
+	font-size: 15px;
+	line-height: 26px;
+}
+.titleDk{
+	small.tpoContest{
+		color: @primaryColor;
+		font-weight: bold;
+		font-size: 15px;
+	}
+	h1{
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+}
+.imgContest{
+	height: 350px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	position: relative;
+	.btnShowImg{
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		a{
+			display: inline-block;
+			padding: 15px;
+			color: darken(white, 20%);
+			position: relative;
+			cursor: pointer;
+			&:hover{
+				color: darken(white, 20%);
+				text-decoration: none;
+			}
+		}
+	}
+}
+.bidding-box{
+	margin-bottom: 30px;
+	.info-box{
+		.counter{
+			background-color: #ECF0F1;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			.is-label,.close-date{
+				margin-bottom: 5px;
+				text-align: center;
+			}
+			.is-label{
+				text-transform: uppercase;
+				font-size: 15px;
+			}
+			.close-date{
+				color: lighten(@secondaryColor, 30%);
+				font-size: 14px;
+			}
+			.flag{
+				margin-top: 15px;
+				&>.btn{
+					cursor: auto ;
+					&:before{
+						content: "";
+						position: absolute;
+						width: 20px;
+						height: 20px;
+						background: inherit;
+						top: -7px;
+						left: 45%;
+						transform: rotateZ(45deg);
+					}
+				}
+			}
+			#timer{
+				margin: 5px auto;
+				padding-left: 18%;
+				div{
+					float: left;
+					width: 60px;
+					height: 60px;
+					text-align: center;
+					background-color: white;
+					margin: 0 5px;
+					padding: 0px 10px;
+					.number{
+						font-size: 30px;
+						width: 100%;
+					}
+				}
+			}
+		} //END COUNTER
+		.contests-info{
+			margin-top: 5px;
+			.popular-entry,.contest-award {
+				padding-top: 10px;
+				h5{
+					margin: 0px;
+					margin-bottom: 20px;
+					font-weight: bold;
+				}
+				&>div{
+					padding: 15px;
+					background-color: #ECF0F1;
+				}
+			}
+			.popular-entry{
+				padding-left: 0px;
+				padding-right: 0px;
+				.likes{
+					font-size: 36px;
+					margin-bottom: 15px;
+					i{
+						color: @primaryColor;
+					}
+				}
+				a{
+					font-size: 15px;
+				}
+			}
+			.contest-award{
+
+				padding-right: 0px;
+				padding-left: 0px;
+				span{
+					font-size: 30px;
+					margin-bottom: 43px;
+				}
+			}
+			.actions{
+				margin-top: 10px;
+				div{
+					&:first-child{
+						margin-bottom: 5px;
+					}
+					&.share{
+						padding-left: 5px;
+						margin-bottom: 10px;
+					}
+					&.watchlist{
+						padding-right: 5px;
+					}
+				}
+				a{
+					display: block;
+
+				}
+			}
+			.adsense{
+				border: 2px solid @btn-default-border;
+				margin-top: 5px;
+				padding-top: 20px;
+				padding-bottom: 20px;
+				h3{
+					margin-top: 0px;
+				}
+			}
+
+		}
+	}
+}
+
+
+#simiralContest{
+	margin-top: 40px;
+	h5{
+		font-weight: bold;
+	}
+}
+
+.showDetails{
+	margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px),screen and (min-width: 992px) {
+
+.description-details{
+	margin-top: 20px;
+	font-weight: 100;
+	font-size: 15px;
+	line-height: 26px;
+}
+.titleDk{
+	small.tpoContest{
+		color: @primaryColor;
+		font-weight: bold;
+		font-size: 15px;
+	}
+	h1{
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+}
+.imgContest{
+	height: 490px;
+}
+.bidding-box{
+	.info-box{
+		.counter{
+			.is-label,.close-date{
+				margin-bottom: 10px;
+				text-align: left;
+			}
+			.close-date{
+				padding-left: 0px;
+			}
+			.flag{
+				margin-top: 10px;
+				&>.btn:before{
+					top: 10px;
+					left: -7px;
+				}
+			}
+			#timer{
+				padding-left: 10px;
+			}
+		} //END COUNTER
+		.contests-info{
+			.popular-entry{
+				padding-right: 5px;
+			}
+			.contest-award{
+				padding-left: 5px;
+				&>div{
+					padding-bottom: 60px;
+				}
+				span{
+					font-size: 30px;
+
+				}
+
+			}
+
+		}
+	}
+}
+.showDetails{
+	margin-top: 90px;
+}
+
+
+}

@@ -1,0 +1,4 @@
+<p>Congratulations <%= @user.username %>,</p>
+<p>Your entry <%= link_to @entry.name, contest_entry_url(@contest, @entry), target: "_blank" %> has been selected as the winner of the <%= @contest.name %> competition!.</p>
+<p>Please complete the following form so that Contagious Ideas can get you your award sooner than later.</p>
+<%= link_to "Complete Form", winner_grant_form_url(@grant.token), target: "_blank" %>

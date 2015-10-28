@@ -1,0 +1,12 @@
+<% if params[:page].present? %>
+  $('.entries-user').append('<%= escape_javascript(render @entries) %>');
+<% else %>
+  $('.entries-user').html('<%= escape_javascript(render @entries) %>');
+  $('a.load-more-items').show();
+<% end %>
+$('a.load-more-items').attr('href', '<%= user_path(@user, page: @entries.next_page) %>');
+
+<% if @entries.current_page == @entries.total_pages %>
+  $('a.load-more-items').attr('href', "#");
+  $('a.load-more-items').hide();
+<% end %>

@@ -1,0 +1,105 @@
+/* PLAYER */
+@import 'variables.less';
+
+.playa input[type=range] {
+  -webkit-appearance:none;
+  -moz-apperance:none;
+  background-color: #D2D7D8;
+  border: 0px solid @secondaryColor;
+  height:.5em;
+  border-radius:.5em;
+  width:100%;
+  margin:-2px;
+  padding:0 !important;
+  line-height:0;
+}
+.playa input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  -moz-apperance:none;
+  z-index:3;
+  height:1em;
+  width:1em;
+  border-radius:1em;
+  border:1px solid @secondaryColor;
+  //background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(0.49, #dddddd), color-stop(0.51, #d1d1d1), color-stop(1, #a1a1a1));
+  background-color: @secondaryColor;
+}
+
+.playa {
+  .btn-group{
+    border: 1px solid @secondaryColor;
+    background-color: #ECF0F1;
+  }
+	.btn{
+    border-width: 0px;
+    background-color: transparent;
+    &.btn-play{
+      padding-bottom: 11px;
+    }
+    &.disabled{
+      padding: 21px 8px;
+    }
+    &.progress{
+      border-bottom-width: 1px;
+    }
+    &.time{
+      border: 1px solid @secondaryColor;
+      border-top-width: 0px;
+      border-bottom-width: 0px;
+    }
+    &.time, &.btn-vol{
+      padding: 12px;
+    }
+    &.progress, &.btn-play{
+      border-bottom-width: 1px;
+    }
+    &.btn-play,  &.btn-vol {
+      border-right-width: 1px;
+    }
+  }
+}
+
+
+.playa  .thumbnail  {
+	width:96%;
+	padding:1.5%;
+}
+
+.playa  .btn-group  {
+	text-align:center;
+}
+
+@media (max-width: 979px) and (min-width: 768px){
+	.col-md-4 .playa, .playa.col-md-4{
+		padding:0;
+	}
+
+}
+@media screen and (min-width: 768px){
+	.playa .btn-group .btn {
+		padding:4px 3px;
+		margin:auto;
+		display:inline-block;
+		float:none;
+	}
+  .playa{
+    .btn{
+      &.progress{
+        padding: 8px 5px;
+      }
+      &.progress, &.btn-play{
+        border-bottom-width: 0px;
+      }
+    }
+
+  }
+
+	.playa.col-md-2 .btn-group .btn, .playa.col-md-1 .btn-group .btn, .col-md-2 .playa .btn-group .btn, .col-md-1 .playa .btn-group .btn{
+		width:100%;
+		display:block;
+	}
+	.col-md-4.playa, .col-md-3 .playa, .col-md-2 .playa, .col-md-1 .playa, .playa.col-md-4, .playa.col-md-3, .playa.col-md-2, .playa.col-md-1{
+		padding:0;
+		overflow:hidden;
+	}
+}

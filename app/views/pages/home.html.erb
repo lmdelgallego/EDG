@@ -1,0 +1,109 @@
+
+<div id="pageContainer" class="col-md-12 col-xs-12">
+	<div class="row">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-12 col-lg-12 col-xs-12">
+					<div id="carousel-home" class="carousel slide hidden-xs" data-ride="carousel" data-interval="false">
+					    <ol class="carousel-indicators">
+					    	<% @fav_contests.each_with_index do |f, i| %>
+					        	<li data-target="#carousel-home" data-slide-to="<%= i %>" class="<%= i == 0 ? 'active' : '' %>"></li>
+					        <% end %>
+					    </ol>
+					    <div class="carousel-inner">
+					    	<% @fav_contests.each_with_index do |f, i|  %>
+						        <div class="item <%= i == 0 ? 'active' : '' %>">
+											<div class="bgCarousel" style="background-image: url('<%= f.banner_photo.url %>')" ></div>
+						            <div class="container">
+						                <div class="carousel-caption">
+						                    <h1><%= f.name %></h1>
+						                    <p><%= f.description %></p>
+						                    <p><%= link_to "See", f, class: "btn btn-lg btn-primary", role: "button" %></p>
+						                </div>
+						            </div>
+						        </div>
+						    <% end %>
+					    </div>
+					    <a class="left carousel-control" href="#carousel-home" data-slide="prev"><i class="fa fa-long-arrow-left"></i></a>
+					    <a class="right carousel-control" href="#carousel-home" data-slide="next"><i class="fa fa-long-arrow-right"></i></a>
+					</div>
+				</div>
+
+				<div class="col-md-12 col-lg-12 col-xs-12">
+					<div class="row">
+
+						<!-- LISTA FILTRO -->
+						<div  id ="filterList" class="filterList col-lg-3 col-xs-12">
+							<ul class="nav nav-pills nav-stacked">
+							  <li class="active change-category all" data-url="all"><a href="javascript:;">View All</a></li>
+							  <li class="change-category text" data-url="type=text"><a href="javascript:;">Text</a></li>
+							  <li class="change-category image" data-url="type=image"><a href="javascript:;">Image</a></li>
+							  <li class="change-category audio" data-url="type=audio"><a href="javascript:;">Audio</a></li>
+							  <li class="change-category caption" data-url="type=caption"><a href="javascript:;">Caption</a></li>
+							  <li class="change-category video" data-url="type=video"><a href="javascript:;">Video</a></li>
+							</ul>
+						</div>
+						<!-- FIN DE LA LISTA FILTRO -->
+
+						<div class="col-lg-9 col-xs-12">
+							<div class="row">
+
+								<!-- FORMULARIO DE ORGANIZACION -->
+								<section class="filterForm col-lg-12 col-xs-12 text-right">
+									<div class="form-inline">
+										<div class="form-group">
+											<label class="control-label">Sort by</label>
+											<select id="selectFilter" name="created_at" class="form-control">
+												<option class ="order" data-url="order=desc" value="desc" selected>Most recent</option>
+												<option class ="order" data-url="order=asc" value="asc">Least recent</option>
+											</select>
+										</div>
+									</div>
+								</section>
+								<!-- FORMULARIO DE ORGANIZACION -->
+
+								<div class="icnloading_ajax">
+						          <!-- <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> -->
+						        </div>
+						        <div id="contests-list">
+							        <% if @contests.empty? %>
+							        	<div class="empty-entries">
+							              <span class="icon"><%= image_tag "icn/icon_emptyentries.png", alt: "" %></span>
+							              <span class="text">No Contest Yet</span>
+							            </div>
+							        <% else %>
+										<%= render partial: @contests, locals: {column_class: 'col-lg-4'} %>
+									<% end %>
+								</div>
+								<!-- BOTON MAS CONCURSOS -->
+								<% unless @contests.current_page == @contests.total_pages %>
+							    <section class="showMore col-md-12 col-xs-12">
+										<%= link_to "LOAD MORE", home_path(page: @contests.next_page, type: params[:type], status: params[:status], premium: params[:premium], order: params[:order]), class: "load-more btn btn-default center-block ", remote: true %>
+								</section>
+							  <% end %>
+
+
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<% if @entries.count > 0 %>
+	<!-- <div class="recent-contests">
+		<div class="cont">
+			<span class="subtitle">Recent Winners</span>
+		  	<div class="post">
+		      <%#= render partial: "winners_entries", collection: @entries, as: :entry %>
+		  	</div>
+		</div>
+	</div> -->
+<% end %>

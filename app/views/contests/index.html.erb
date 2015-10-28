@@ -1,0 +1,67 @@
+<div class="intro-contest bgplace">
+    <div class="container">
+        <div class="col-lg-12">
+            <h1>Our Contests</h1>
+            <p>We offer a wide range of contests for various types of creative professionals, students and even those who just like to dabble.<br> After signing  up for a Basic or Premium membership, browse our contests to find the right one for you. </p>
+        </div>
+    </div>
+</div>
+<div class="recent-contests">
+    <div class="cont">
+        <div class="filters-head">
+            <div class="filter-menu-left">
+                <div  id ="sort-filter-closed" data-url="" class="open-closed btn green medium" >Open</div>
+                <div  id='sort-filter-open' data-url="status=closed" class="open-closed btn gray medium" >Closed</div>
+            </div> 
+            <div class="filter-menu-right">
+                <a class="btn green medium menu-mobile"><span></span><span></span><span></span></a>
+                <ul class="btn-list">
+                    <li class='all-free-premium active' data-url="" ><a>All</a></li>
+                    <li class='all-free-premium' data-url="premium=0" ><a>Free</a></li>
+                    <li class='all-free-premium' data-url="premium=1" ><a>Premium</a></li>
+                </ul>
+                <select class="selectpicker" id="sort-filter-dropdown">
+                    <option data-url="">All</option>
+                    <option data-url="type=text">Text</option>
+                    <option data-url="type=image">Image</option>
+                    <option data-url="type=audio">Audio</option>
+                    <option data-url="type=caption">Caption</option>
+                    <option data-url="type=video">Video</option>
+                </select>
+            </div>
+        </div>
+        <div class="menu-mobile-list">
+            <ul class="btn-list">
+                <li class='all-free-premium active' data-url="" ><a hrf="#" >All</a></li>
+                <li class='all-free-premium' data-url="premium=0" ><a hrf="#" >Free</a></li>
+                <li class='all-free-premium' data-url="premium=1" ><a hrf="#" >Premium</a></li>
+            </ul> 
+            <select class="selectpicker" id="sort-filter-dropdown">
+                <option data-url="">All</option>
+                <option data-url="type=text">Text</option>
+                <option data-url="type=image">Image</option>
+                <option data-url="type=audio">Audio</option>
+                <option data-url="type=caption">Caption</option>
+            </select>  
+        </div>    
+        <div class="icnloading_ajax">
+          <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        </div>
+        <div class="post contest-list">
+          <% if @contests.empty? %>
+            <div class="empty-entries">
+              <span class="icon"><%= image_tag "icn/icon_emptyentries.png", alt: "" %></span>
+              <span class="text">No Contest Yet</span>
+            </div>
+          <% else %>
+            <%= render @contests %>
+          <% end %>
+
+        </div>
+          <%= link_to contests_path(page: @contests.next_page, type: params[:type], status: params[:status], premium: params[:premium]), class: "load-more-items", remote: true do %>
+            <span class="loadingmore"><span class="icn loadmore"></span>Loading, please wait...</span>
+          <% end %>
+
+    </div>
+
+</div>

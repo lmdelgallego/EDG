@@ -1,0 +1,21 @@
+<p>Hi <%= @user.full_name %>,</p>
+<p>Thank you for participating in Contagious Ideas. You can see how your entry looks and share it.</p>
+<ul>
+  <% @entries.each do |entry| %>
+    <li><%= link_to entry.name, entry, target: "_blank" %></li>
+  <% end %>
+</ul>
+
+<p>Watch list</p>
+<% @contests.each do |contest|%>
+  <% entries = contest.new_entries_in_days(@days_ago) %>
+  <% if entries.present? %>
+    <strong><%= contest.name %></strong>
+    <u>
+      <% entries.each do |entry| %>
+        <li><%= link_to entry.name, entry, target: "_blank" %></li>
+      <% end %>
+    </u>
+  <% end %>
+<% end %>
+<p>Have a great day!</p>

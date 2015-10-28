@@ -1,0 +1,29 @@
+$('.change-category.active').removeClass('active');
+<% if @contests.empty? %>
+	$('#contest-list').html('<div class="empty-entries"><span class="icon"><%= image_tag "icn/icon_emptyentries.png", alt: "" %></span><span class="text">No Contest Yet </span></div>');
+    $('a.load-more').attr('href', "#");
+    $('a.load-more').hide();
+    $('.showMore').hide();
+<%else %>
+  <% if @contest_type.present? %>
+    $(".change-category.<%= @contest_type %>").addClass('active');
+  <% else %>
+    $(".change-category.all").addClass('active');
+  <% end %>
+
+  <% if params[:page].present? %>
+	$('#contests-list').append("<%= escape_javascript(render partial: @contests, locals: {column_class: 'col-lg-4'}) %>");
+  <% else %>
+    $('#contests-list').html("<%= escape_javascript(render partial: @contests, locals: {column_class: 'col-lg-4'}) %>");
+    $('a.load-more').show();
+    $('.showMore').show();
+  <% end %>
+
+  $('a.load-more').attr('href', '<%= home_path(type: params[:type], status: params[:status], premium: params[:premium], page: @contests.next_page, order: params[:order] )%>');
+
+  <% if @contests.current_page == @contests.total_pages %>
+    $('a.F').attr('href', "#");
+    $('a.load-more').hide();
+    $('.showMore').hide();
+  <% end %>
+<% end %>

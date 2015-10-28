@@ -1,0 +1,30 @@
+<div class="list-thumb" id="user-<%= user.id %>">
+	<div>
+		<div class="thumb-image">
+      <% if user.profile_image.blank? %>
+        <%= image_tag "icn/icon_uploadimg.png", alt: "", :class => "icnuploadimg" %>
+      <% else %>
+          <%= image_tag(user.profile_image_url(:thumb)) %>
+      <% end %>
+		</div>
+		<span><%= link_to user.full_name, user, target: "_blank" %></span>
+	</div>
+	<span>Joined <%= distance_of_time_in_words(Time.zone.now, user.created_at, false, { highest_measure_only: true } ) %> ago</span>
+	<div class="right">
+		<span class="icn cloud"></span>
+		<span><%= user.entries_count %></span>
+	</div>
+	<div class="right">
+		<span class="icn card"></span>
+		<span><%= number_to_currency(user.total_donations) %></span>
+	</div>
+	<div class="actions-users">
+	<% if user.premium && user.membership.expiration_date.nil? %>
+		<%= link_to "Remove Premium", remove_premium_path(user) %>
+	<% elsif !user.premium %>
+		<%= link_to "Set as Premium", make_premium_path(user) %>
+	<% end %>
+    <%= link_to "Edit", edit_admin_user_path(user) %>
+    <%= link_to "Delete", admin_user_path(user), :method => :delete, remote: true, data: { confirm: "Are you sure you want to delete this user?" } %>
+	</div>
+</div>

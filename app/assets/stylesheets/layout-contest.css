@@ -1,0 +1,249 @@
+/* CONTEST */
+.description-details {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 100;
+  font-size: 15px;
+  line-height: 26px;
+}
+.titleDk small.tpoContest {
+  color: #2ecc71;
+  font-weight: bold;
+  font-size: 15px;
+}
+.titleDk h1 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.bidding-box .info-box .counter {
+  background-color: #ECF0F1;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.bidding-box .info-box .counter .is-label,
+.bidding-box .info-box .counter .close-date {
+  margin-bottom: 5px;
+  text-align: center;
+}
+.bidding-box .info-box .counter .is-label {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+.bidding-box .info-box .counter .close-date {
+  color: #c0c7ce;
+  font-size: 14px;
+}
+.bidding-box .info-box .counter .flag {
+  margin-top: 15px;
+}
+.bidding-box .info-box .counter .flag > .btn:before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: inherit;
+  top: -7px;
+  left: 45%;
+  transform: rotateZ(45deg);
+}
+.bidding-box .info-box .counter #timer {
+  margin: 5px auto;
+  padding-left: 18%;
+}
+.bidding-box .info-box .counter #timer div {
+  float: left;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  background-color: white;
+  margin: 0 5px;
+  padding: 0px 10px;
+}
+.bidding-box .info-box .counter #timer div .number {
+  font-size: 30px;
+  width: 100%;
+}
+.bidding-box .info-box .contests-info {
+  margin-top: 5px;
+}
+.bidding-box .info-box .contests-info .popular-entry,
+.bidding-box .info-box .contests-info .contest-award {
+  padding-top: 10px;
+}
+.bidding-box .info-box .contests-info .popular-entry h5,
+.bidding-box .info-box .contests-info .contest-award h5 {
+  margin: 0px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.bidding-box .info-box .contests-info .popular-entry > div,
+.bidding-box .info-box .contests-info .contest-award > div {
+  padding: 15px;
+  background-color: #ECF0F1;
+}
+.bidding-box .info-box .contests-info .popular-entry {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.bidding-box .info-box .contests-info .popular-entry .likes {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+.bidding-box .info-box .contests-info .popular-entry .likes i {
+  color: #2ecc71;
+}
+.bidding-box .info-box .contests-info .popular-entry a {
+  font-size: 15px;
+}
+.bidding-box .info-box .contests-info .contest-award {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.bidding-box .info-box .contests-info .contest-award span {
+  font-size: 30px;
+  margin-bottom: 43px;
+}
+.bidding-box .info-box .contests-info .actions {
+  margin-top: 10px;
+}
+.bidding-box .info-box .contests-info .actions div:first-child {
+  margin-bottom: 5px;
+}
+.bidding-box .info-box .contests-info .actions div.share {
+  padding-left: 5px;
+}
+.bidding-box .info-box .contests-info .actions div.watchlist {
+  padding-right: 5px;
+}
+.bidding-box .info-box .contests-info .actions a {
+  display: block;
+}
+.bidding-box .info-box .contests-info .adsense {
+  border: 2px solid #bac1c3;
+  margin-top: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.bidding-box .info-box .contests-info .adsense h3 {
+  margin-top: 0px;
+}
+#entries {
+  margin-top: 40px;
+  font-size: 15px;
+}
+#entries .headerEntries {
+  border-bottom: 1px solid #c0c7ce;
+}
+#entries .headerEntries h5 {
+  margin: 0px;
+  font-weight: bold;
+}
+#entries .headerEntries .filter-menu {
+  text-align: right;
+}
+#entries .headerEntries .filter-menu ul {
+  margin-bottom: -1px;
+}
+#entries .headerEntries .filter-menu ul > li {
+  padding-bottom: 5px;
+}
+#entries .headerEntries .filter-menu ul > li.active {
+  border-bottom: 2px solid #2ecc71;
+}
+#entries .headerEntries .filter-menu ul > li.active > a {
+  color: #2ecc71;
+}
+#entries .headerEntries .filter-menu ul > li.active > a .caret {
+  display: inline-block;
+}
+#entries .headerEntries .filter-menu ul > li > a {
+  color: #6c7a89;
+}
+#entries .headerEntries .filter-menu ul > li > a:active,
+#entries .headerEntries .filter-menu ul > li > a:hover {
+  color: #2ecc71;
+  text-decoration: none;
+}
+#entries .headerEntries .filter-menu ul > li > a .caret {
+  display: none;
+}
+#entries .entries-container {
+  margin-top: 5px;
+}
+#entries .entries-container .entry {
+  background-color: #eaefef;
+  color: #6c7a89;
+  margin-bottom: 5px;
+}
+#entries .entries-container .entry h4 small{
+  color: #2ecc71;
+}
+#entries .entries-container .entry .like-content {
+  margin-top: 10px;
+}
+#entries .entries-container .entry .like-content .entry-likes {
+  margin-right: 20px;
+}
+#entries .entries-container .entry .like-content .entry-likes i {
+  color: #2ecc71;
+}
+#entries .entries-container .entry .like-content .entry-author,
+#entries .entries-container .entry .like-content .entry-author a {
+  color: #2ecc71;
+}
+#simiralContest {
+  margin-top: 40px;
+}
+#simiralContest h5 {
+  font-weight: bold;
+}
+@media (min-width: 992px) {
+  #pageContainer .description-details {
+    margin-top: 20px;
+    font-weight: 100;
+    font-size: 15px;
+    line-height: 26px;
+  }
+  #pageContainer .titleDk small.tpoContest {
+    color: #2ecc71;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  #pageContainer .titleDk h1 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  #pageContainer .bidding-box .info-box .counter .is-label,
+  #pageContainer .bidding-box .info-box .counter .close-date {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  #pageContainer .bidding-box .info-box .counter .close-date {
+    padding-left: 0px;
+  }
+  #pageContainer .bidding-box .info-box .counter .flag {
+    margin-top: 10px;
+  }
+  #pageContainer .bidding-box .info-box .counter .flag > .btn:before {
+    top: 10px;
+    left: -7px;
+  }
+  #pageContainer .bidding-box .info-box .counter #timer {
+    padding-left: 10px;
+  }
+  #pageContainer .bidding-box .info-box .contests-info .popular-entry {
+    padding-right: 5px;
+  }
+  #pageContainer .bidding-box .info-box .contests-info .contest-award {
+    padding-left: 5px;
+  }
+  #pageContainer .bidding-box .info-box .contests-info .contest-award > div {
+    padding-bottom: 60px;
+  }
+  #pageContainer .bidding-box .info-box .contests-info .contest-award span {
+    font-size: 30px;
+  }
+  #pageContainer .showDetails {
+    margin-top: 90px;
+  }
+}

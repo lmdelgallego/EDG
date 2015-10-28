@@ -1,0 +1,12 @@
+<h1>Submit entry</h1>
+<div class="data-zone">
+<%= render 'form' %>
+</div>
+
+<script>
+$("#new_entry").submit(function(){
+  $('#submitentry').modal('hide');
+  $(".overlay").removeClass("hide");
+});
+</script>
+

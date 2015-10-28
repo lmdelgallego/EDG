@@ -1,0 +1,88 @@
+//GRADIENTE VERTICAL
+
+.gradVertical(@from: @basecolor, @to: @compcolor){
+	background: -webkit-linear-gradient(top, @from, @to);
+	background: -moz-linear-gradient(top, @from, @to);
+	background: -o-linear-gradient(top, @from, @to);
+	background: linear-gradient(top, @from, @to);
+	background-color: @from;
+}
+
+//BORDER_RADIUS
+.borderRaduis(@radius: 4px){
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+
+// ANIMACIONES
+.keyframes(@name; @arguments) {
+	@-o-keyframes @name { @arguments(); }
+	@-moz-keyframes @name { @arguments(); }
+	@-webkit-keyframes @name { @arguments(); }
+	@keyframes @name { @arguments(); }
+}
+
+.animation(@arguments) {
+	-webkit-animation: @arguments;
+	-moz-animation: @arguments;
+	-o-animation: @arguments;
+	animation: @arguments;
+}
+
+
+//VARIACIONES DE BOTONES
+
+.button-variant(@color: @btn-default-color; @background: @btn-default-bg; @border: @btn-default-border) {
+	color: @color;
+	background-color: @background;
+	border-color: @border;
+	&:focus,
+	&.focus {
+		color: @color;
+		background-color: darken(@background, 5%);
+	    border-color: darken(@border, 25%);
+	}
+	&:hover {
+		color: @color;
+		background-color: darken(@background, 5%);
+	    border-color: darken(@border, 12%); 
+	}
+	&:active,
+	&.active,
+	.open > .dropdown-toggle& {
+		color: @color;
+		background-color: darken(@background, 10%);
+	    border-color: darken(@border, 12%);
+
+		&:hover,
+		&:focus,
+		&.focus {
+		  color: @color;
+		  background-color: darken(@background, 10%);
+		  border-color: darken(@border, 25%);
+		}
+	}
+	&:active,
+	&.active,
+	.open > .dropdown-toggle& {
+	background-image: none;
+	}
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		&:hover,
+		&:focus,
+		&.focus {
+			background-color: @background;
+		    border-color: @border;
+		}
+	}
+
+	.badge {
+		color: @background;
+		background-color: @color;
+	}
+}

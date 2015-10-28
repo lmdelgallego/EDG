@@ -1,0 +1,9 @@
+<%= form_for [@entry, @comment] do |f| %>
+  <div class="field">
+    <%= f.text_area :message %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit a comment"%>
+  </div>
+<% end %>

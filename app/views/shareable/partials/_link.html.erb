@@ -1,0 +1,12 @@
+<a target="_blank" href="<%= options[:url] %>">
+  <% case options[:button_name] %>
+  <% when "twitter" %>
+    <%= image_tag "icn/twitter.png", alt: "" %>
+  <% when "facebook" %>
+    <%= image_tag "icn/facebook.png", alt: "" %>
+  <% when "linkedin" %>
+    <%= image_tag "icn/linkedin.png", alt: "" %>
+  <% when "google_plus" %>
+    <%= image_tag "icn/google_plus.png", alt: "" %>
+  <% end %>
+</a>

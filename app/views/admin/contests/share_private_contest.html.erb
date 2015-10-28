@@ -1,0 +1,13 @@
+<div class="data-zone"> 
+  <h2><%= @contest.name  %></h2>
+  <%= form_for :email, :url => share_private_email_admin_contest_path(@contest) do |f|%>
+    <div class="field">
+      <%= f.autocomplete_field :username,  autocomplete_user_username_contests_path, 'data-delimiter' =>
+      ',', :multiple => true, placeholder: "Username" %>
+    </div>
+    <div class="field">
+      <%= f.text_area :message, placeholder: "Write a message ..."  %>
+    </div>
+    <%= f.submit "Send email" %>
+  <% end %>
+</div>

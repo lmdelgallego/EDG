@@ -1,0 +1,27 @@
+<div class="contactus">
+
+  <h1>Contact Us</h1>
+
+  <p>We will gladly address any questions, concerns or suggestions you may have. Just complete this form at any time, and we will respond as soon as possible.</p>
+
+  <div class="data-zone">
+    <%= form_tag contact_us_path do %>
+    	<div class="field">
+    		<label>Your Name</label>
+    		<%= text_field_tag :name, nil, required: true %>
+    	</div>
+    	<div class="field">
+    		<label>Your Email</label>
+    		<%= email_field_tag :email, nil, required: true %>
+    	</div>
+    	<div class="field">
+        <label>Your Message</label>
+        <%= text_area_tag :message, nil, class: "h164", required: true %>
+    	</div>
+    	<div class="actions">
+        <%= submit_tag "Send", class: "btn btn-active db pay-suscription" %>
+    	</div>
+    <% end %>
+  </div>
+
+</div>

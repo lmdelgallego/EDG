@@ -1,0 +1,214 @@
+<div class="container profile-user">
+
+    <div class="head-contest-options npt">
+        <div class="filter-menu">
+            <ul>
+                <li>
+                    <a href="<%= user_path(current_user) %>" class="form_testing">Entries</a>
+                </li>
+                <li>
+                    <a href="<%= contests_won_user_path(@user)%>" class="form_testing">Contests Won</a>
+                </li>
+                <li>
+                    <a href="#" class="active">Profile Info</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12">
+        <div class="row">
+
+            <div class="col-md-4">
+              <%= render partial: "user_information" %>
+            </div>
+
+            <!-- Academic information  -->
+            <div class="entries-user entries-container edit-profile-user col-md-8">
+                    <%= nested_form_for @user, method: :put do |f| %>
+
+                        <div class="data-zone">
+
+                            <div class="first-head">
+                                <span>Connect with</span>
+                                <div class="login-options">
+                                    <div class="col-md-8">
+                                        <ul>
+                                            <% if @user.facebook_uid.blank?%>
+                                                <li class="facebook">
+                                                    <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                                                        <span class="icn fblogin"></span>
+                                                    <% end %>
+                                                    <span>Facebook</span>
+                                                </li>
+                                            <% end %>
+
+                                            <% if @user.twitter_uid.blank?%>
+                                                <li class="twitter">
+                                                    <%= link_to user_omniauth_authorize_path(:twitter) do %>
+                                                        <span class="icn twlogin"></span>
+                                                    <% end %>
+                                                    <span>Twitter</span>
+                                                </li>
+                                            <% end %>
+
+                                            <% if @user.linkedin_uid.blank?%>
+                                                <li class="linkedin">
+                                                    <%= link_to user_omniauth_authorize_path(:linkedin) do %>
+                                                        <span class="icn lkdnlogin"></span>
+                                                    <% end %>
+                                                    <span>Linkedin</span>
+                                                </li>
+                                            <% end %>
+
+                                            <% if @user.google_uid.blank?%>
+                                                <li class="googlep">
+                                                    <%= link_to user_omniauth_authorize_path(:google) do %>
+                                                        <span class="icn gplogin"></span>
+                                                    <% end %>
+                                                    <span>Google+</span>
+                                                </li>
+                                            <% end %>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <% if @user.premium && @user.membership.expiration_date && @user.membership.status == true %>
+                                            <div>
+                                              <%= link_to "Cancel premium account", user_cancel_account_path(current_user), class: "btn btn-active", :id => "subs-cancel", method: :put , remote: true%>
+                                            </div>
+                                            <p id="subs-message" class="hide ">Subscription canceled. You have premium privileges until <%= @user.membership.expiration_date.strftime("%B %d %Y") %></p>
+                                        
+                                        <% elsif !@user.premium %>
+                                            <div>
+                                                <a href="<%= edit_membership_path(current_user.membership) %>" class="btn btn-active">Upgrade to Premium</a>
+                                            </div>
+                                        <% end%>
+                                    </div>
+
+                                    <div class="col-md-9 col-md-offset-3">
+
+                                        <div class="profileupload">
+                                            <span class="label-form">Upload a Profile Photo</span>
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                              <span class="btn btn-active btn-file"><span class="fileinput-new">Select</span><span class="fileinput-exists">Change</span><%= f.file_field :profile_image %> </span>
+                                              <span class="fileinput-filename"></span>
+                                              <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-12">  
+                                        <div class="row">      
+                                            <div class="personaldates">
+                                                <fieldset class="inline col-md-6">
+                                                    <%= f.text_field :full_name, autofocus: true, placeholder: 'Full Name'%>
+                                                </fieldset>
+                                                <fieldset class="inline col-md-6">
+                                                    <%= f.text_field :username, placeholder: 'Username'%>
+                                                </fieldset>
+                                                <fieldset class="inline col-md-6 h120">
+                                                    <%= f.text_area :description, :maxlength=>"500", placeholder: "About me* - 500 chars." %>          
+                                                </fieldset>
+                                                <fieldset class="inline col-md-6">
+                                                    <%= f.email_field :email, autofocus: true , disabled: true, placeholder: 'Email'%>
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="userdates data-zone">
+                                                <fieldset class="inline col-md-6">
+                                                    <%= f.text_field :street_address, placeholder: 'Address Line 1'%>
+                                                </fieldset>
+                                                <fieldset class="inline col-md-6">
+                                                    <%= f.text_field :address_2, placeholder: 'Address Line 2'%>
+                                                </fieldset>
+                                                <fieldset class="inline col-md-6">
+                                                    <%= f.text_field :city, placeholder: 'City'%>
+                                                </fieldset>
+                                                <fieldset class="inline col-md-6">
+                                                    <%= f.collection_select(:state_id, State.all, :id, :name, { :include_blank => 'Select state'},{ :class => "selectpicker", :selected_value => @user.state} )%>
+                                                </fieldset>
+                                                <fieldset class="inline col-md-6">
+                                                    <%= f.text_field :zipcode, placeholder: 'Zip Code'%>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field col-md-12">
+                                        <%= f.label :personal_data, 'Hide personal information' %>
+                                        <%= f.check_box(:personal_data) %>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="data-zone">
+
+                            <div class="selecting-data generatefield">
+                                <%= f.fields_for :studies do |study| %>
+
+                                    <fieldset class="add-matter col-md-6">
+                                            <%= study.autocomplete_field :alma_mater_id, autocomplete_alma_mater_name_users_path, placeholder: 'ALMA MATTER' , value: study.object.alma_mater.blank? ? "" : study.object.alma_mater.name %>
+                                    </fieldset>
+
+                                    <fieldset class="col-md-6">
+                                            <%= study.collection_select(:degree_id, Degree.all, :id, :name, { :include_blank => "Degree earned"},{ :class => "selectpicker" , :selected_value => @user.degree } ) %>
+                                    </fieldset>
+
+                                    <fieldset class="col-md-6">
+                                            <%= study.autocomplete_field :major_id, autocomplete_major_name_users_path, :id_element => '#some_element' , placeholder: 'MAJOR COURSE OF STUDY', value: study.object.major.blank? ? "" : study.object.major.name %>
+                                    </fieldset>
+
+
+                                    <fieldset class="col-md-6">
+                                            <%= study.autocomplete_field :minor_id, autocomplete_minor_name_users_path, :id_element => '#some_element', placeholder: 'MINOR COURSE OF STUDY', value: study.object.minor.blank? ? "" : study.object.minor.name %>
+                                    </fieldset>
+
+                                    <fieldset class="col-md-6">
+                                        <div class="onyl-year-month">
+                                            <%= study.text_field :graduation_date, class: "date" , placeholder: 'GRADUATION DATE', value: study.object.graduation_date.blank? ? "" : study.object.graduation_date.strftime("%m-%Y")%>
+                                        </div>
+                                    </fieldset>
+
+                                <% end %>
+                                <%= f.link_to_add raw('Add another Alma mater <span class="icnadd">+</span>'), :studies , :class => "addalma" %>
+
+                                <fieldset class="col-md-12">
+                                        <%= f.text_field :amount, placeholder: 'TOTAL EDUCATIONAL EXPENSES', class: "loan-amount", data: { a_sign: "$", a_dec: ".", a_sep: "," }  %>
+                                </fieldset>
+
+                                <div class="field col-md-12">
+                                    <%= f.label :education_data, 'Hide academic information' %>
+                                    <%= f.check_box(:education_data) %>
+                                </div>
+
+                                <fieldset class="actions">
+                                    <%= f.submit "Save", :onclick =>"submit_form_okey = true;"%>
+                                </fieldset>
+
+                            </div>
+
+                        </div>
+
+
+                    <% end %>
+
+                    <% content_for :javascript_includes do %>
+                        <%= javascript_include_tag "save_data_form.js" %>
+                    <% end %>
+
+            </div>
+            <!-- End Academic information  -->
+
+        </div>
+    </div>
+
+
+</div>
+
+

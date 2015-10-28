@@ -1,0 +1,31 @@
+<div class="list-thumb <%= 'paused' if contest.paused? %>" id="contest-<%= contest.id %>">
+	<div class="thumb-image">
+    <% if contest.cover_photo.blank? %>
+      <img src="" alt="">
+    <% else %>
+      <%= image_tag contest.cover_photo_url(:mini_avatar) %>
+    <% end %>
+	</div>
+	<div class="text">
+    <%= link_to contest.name+ (contest.private ? " - private": ""), admin_contest_path(contest) %>
+		<span><%= number_to_currency(contest.reward, precision: 0) %> - <%= contest_time_left(contest) %> - <%= pluralize(contest.entries_count, "Entry") %> - <%= pluralize(contest.visits_count, "View")%></span>
+	</div>
+	<div class="icn-type <%= contest.categories.first.name %>type">
+		<span class="icn <%= contest.categories.first.name %>icon"></span>
+	</div>
+	<div class="actions-users">
+		<%= link_to mark_as_favorite_path(contest), remote: true, class:  contest.fav_at_home ? "hide" : ""  do %>
+			<i class="fa fa-heart-o"></i>
+		<% end %>
+		<%= link_to unmark_as_favorite_path(contest), remote: true, class: contest.fav_at_home ? "" : "hide" do %>
+			<i class="fa fa-heart"></i>
+		<% end %>
+    <%= link_to "View", admin_contest_path(contest) %>
+    <%= link_to "Edit", edit_admin_contest_path(contest) unless contest.has_winner?%>
+    <% unless contest.closed? %>
+      <%= link_to "Pause", pause_admin_contest_path(contest), class: "pause-link", method: :put, remote: true %>
+      <%= link_to "Resume", resume_admin_contest_path(contest), class: "resume-link", method: :put, remote: true %>
+    <% end %>
+    <%= link_to "Delete", admin_contest_path(contest), method: :delete, remote: true, data: { confirm: "Are you sure you want to delete this contest?" } %>
+	</div>
+</div>

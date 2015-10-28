@@ -1,0 +1,24 @@
+<span class="title mt0">Winner <%= @grant.user.full_name %></span>
+<div class="data-zone">
+	<div class="field">
+    <label>Name: <%= link_to @user.full_name, @user, target: '_blank' %></label>
+	</div>
+  <div class="field">
+    <label>Address line 1: <%= @user.street_address%></label>
+  </div>
+  <div class="field">
+    <label>Address line 2: <%= @user.address_2%></label>
+  </div>
+  <div class="field">
+    <label>City: <%= @user.city%></label>
+  </div>
+  <div class="field">
+    <label>State: <%= @user.state.name if @user.state %></label>
+  </div>
+  <div class="field">
+    <label>Zip code: <%= @user.zipcode%></label>
+  </div>
+  <div class="field">
+    <label>SSN or Tax ID: <%= @user.tax%></label>
+  </div>
+</div>

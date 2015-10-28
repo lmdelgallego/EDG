@@ -1,0 +1,2 @@
+$("span.title").html('Contests (<%= escape_javascript(page_entries_info @contests, html: false) %>)');
+$("div.contest-admin").html('<%= escape_javascript(render "contests_list") %>');

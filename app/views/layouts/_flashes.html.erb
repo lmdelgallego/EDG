@@ -1,0 +1,22 @@
+<div class="layersign <%= 'flash-open' unless flash.empty? %>">
+  <div class="container">
+    <a href="#" class="close"><%= image_tag "icn/close_log.png", alt: "" %></a>
+    <div>
+      <% if flash.empty? %>
+        <% if ["contests", "entries", "donations","users"].include?(params[:controller]) %>
+          <span>Login or Register?</span>
+          <a href="<%= new_user_session_path(referer_path: request.path) %>" class="btn">Login</a>
+          <a href="<%= new_user_registration_path(referer_path: request.path) %>" class="btn">Sign up</a>
+        <% end %>
+      <% else %>
+        <% flash.each do |type, message| %>
+          <% unless message.blank? %>
+            <span><%= message %></span>
+          <% end %>
+        <% end %>
+        <% flash.clear %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

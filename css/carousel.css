@@ -1,0 +1,118 @@
+/* CARUSEL */
+#carousel-home {
+  margin-bottom: 51px;
+}
+#carousel-home .carousel-indicators {
+  bottom: -30px;
+  margin-left: 0px;
+  left: 0px;
+  width: 100%;
+}
+#carousel-home .carousel-indicators li {
+  background-color: #6c7a89;
+  border-radius: 0px;
+  border: none;
+  display: block;
+  float: left;
+  margin: 0px 7px 0px 0px;
+  height: 10px;
+}
+#carousel-home .carousel-indicators li:last-child {
+  margin-right: 0px;
+}
+#carousel-home .carousel-indicators .active {
+  background-color: #2ecc71;
+  height: 10px;
+  margin: 0px 7px 0px 0px;
+}
+.carousel .carousel-control {
+  color: #6c7a89;
+  background-color: #eaefef;
+  position: absolute;
+  top: 45%;
+  width: 29px;
+  height: 37px;
+  font-size: 20px;
+  padding-top: 4px;
+  font-weight: 100;
+  opacity: 1;
+  text-shadow: none;
+}
+.carousel .carousel-control.left,
+.carousel .carousel-control.right {
+  background-image: none;
+}
+.carousel .carousel-control.left {
+  left: -15px;
+}
+.carousel .carousel-control.right {
+  right: -15px;
+}
+#carousel-testimonio {
+  background-image: url(../img/bg/bgtestimonials.png);
+}
+#carousel-testimonio .carousel-caption {
+  text-align: left;
+  left: 10%;
+  right: 10%;
+}
+#carousel-testimonio .item {
+  height: 300px;
+}
+#carousel-testimonio img {
+  margin-top: 17px;
+  margin-left: 33%;
+  width: 32%;
+}
+#carousel-testimonio .carousel-control {
+  color: #6c7a89;
+  background-color: #eaefef;
+  position: absolute;
+  top: 45%;
+  width: 29px;
+  height: 37px;
+  font-size: 20px;
+  padding-top: 4px;
+  font-weight: 100;
+  opacity: 1;
+  text-shadow: none;
+}
+#carousel-testimonio .carousel-control.left,
+#carousel-testimonio .carousel-control.right {
+  background-image: none;
+}
+#carousel-testimonio .carousel-control.left {
+  left: -15px;
+}
+#carousel-testimonio .carousel-control.right {
+  right: -15px;
+}
+@media (min-width: 992px) {
+  #carousel-testimonio img {
+    margin-top: 30px;
+    margin-left: 30px;
+    width: auto;
+  }
+  #carousel-testimonio .carousel-caption {
+    left: 30%;
+    top: 5%;
+  }
+  #carousel-testimonio .carousel-caption .name {
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+    line-height: 21px;
+  }
+  #carousel-testimonio .carousel-caption .name small {
+    font-size: 14px;
+    text-transform: none;
+    margin-left: 20px;
+    line-height: 15px;
+    color: white;
+  }
+  #carousel-testimonio .carousel-caption p {
+    font-weight: lighter;
+    font-size: 15px;
+    line-height: 44px;
+  }
+}

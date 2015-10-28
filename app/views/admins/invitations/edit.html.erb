@@ -1,0 +1,22 @@
+<div class="head-complete-info">
+  <h2><%= t 'devise.invitations.edit.header' %></h2>
+  <p>You need a password to access your account</p>
+</div>
+<div class="data-zone">
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+    <%= f.hidden_field :invitation_token %>
+
+    <div>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div><%= f.submit t("devise.invitations.edit.submit_button") %></div>
+  <% end %>
+</div>
+

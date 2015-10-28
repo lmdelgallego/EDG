@@ -1,0 +1,88 @@
+/* HELP */
+.introHelp {
+  margin-top: 30px;
+  display: block;
+  padding: 100px 0;
+  text-align: center;
+  background: url('../img/bg/bg_team.png');
+  background-size: cover;
+  background-position: center;
+}
+.introHelp h1 {
+  color: white;
+}
+.introHelp h1:first-of-type {
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 47px;
+  margin-bottom: 35px;
+}
+.faqs {
+  margin-top: 20px;
+}
+.faqs .panel {
+  border-width: 0px;
+}
+.faqs .panel.panel-default {
+  border-color: transparent;
+  box-shadow: none;
+}
+.faqs .panel.panel-default .panel-heading {
+  background: none;
+}
+.faqs .panel.panel-default .panel-heading .panel-title a {
+  font-size: 24px;
+  font-weight: 300;
+  color: #6c7a89;
+  transition: font-size 0.2s ease-in-out;
+  -webkit-transition: font-size 0.2s ease-in-out;
+  -moz-transition: font-size 0.2s ease-in-out;
+  -ms-transition: font-size 0.2s ease-in-out;
+  -o-transition: font-size 0.2s ease-in-out;
+}
+.faqs .panel.panel-default .panel-heading .panel-title a:hover,
+.faqs .panel.panel-default .panel-heading .panel-title a:active,
+.faqs .panel.panel-default .panel-heading .panel-title a:visited,
+.faqs .panel.panel-default .panel-heading .panel-title a:focus {
+  font-size: 26px;
+  text-decoration: none;
+}
+.faqs .panel.panel-default .panel-heading [data-toggle="collapse"] {
+  transition: transform 1s ease;
+}
+.faqs .panel.panel-default .panel-heading [data-toggle="collapse"]:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e072";
+  float: right;
+  color: #2ecc71;
+  font-size: 18px;
+  line-height: 22px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transition: transform 0.3s ease, color 0.3s ease;
+  -moz-transition: transform 0.3s ease, color 0.3s ease;
+  -ms-transition: transform 0.3s ease, color 0.3s ease;
+  -o-transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.faqs .panel.panel-default .panel-heading [data-toggle="collapse"].collapsed:after {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  color: #454444;
+  -webkit-transition: transform 0.3s ease, color 0.3s ease;
+  -moz-transition: transform 0.3s ease, color 0.3s ease;
+  -ms-transition: transform 0.3s ease, color 0.3s ease;
+  -o-transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.faqs .panel.panel-default .panel-body {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 32px;
+}

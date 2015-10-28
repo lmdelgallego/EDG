@@ -1,0 +1,5 @@
+<div class="list">
+  <%= render @users %>
+</div>
+  
+<%= will_paginate @users, :renderer => PaginationLinkRenderer %>

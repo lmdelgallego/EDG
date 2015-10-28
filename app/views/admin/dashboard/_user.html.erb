@@ -1,0 +1,13 @@
+<div class="list-thumb">
+	<div>
+		<div class="thumb-image imagesssss">
+		<% if user.profile_image.blank? %>
+			<%= image_tag "icn/icon_uploadimg.png", alt: "", :class => "icnuploadimg" %>
+		<% else %>
+			<%= image_tag(user.profile_image_url(:thumb)) %>
+		<% end %>
+		</div>
+		<span><%=link_to user.full_name, user, target: "_blank" %></span>
+	</div>
+	<span><%= distance_of_time_in_words(Time.zone.now, user.created_at, false, { highest_measure_only: true } ) %> ago</span>
+</div>

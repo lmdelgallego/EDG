@@ -1,0 +1,306 @@
+<div id="pageContainer" class="pageDetails col-md-12 col-xs-12">
+    <div class="row">
+      <div  class="container">
+        <div class="row">
+          <!-- imagen contest -->
+          <div class="col-md-6 col-xs-12">
+            <div class="image-details col-lg-12">
+              <div class="row">
+                <div class="titleDk col-md-12 col-lg-12 visible-xs">
+                  <div class="row">
+                    <small class="tpoContest"><%= @contest.categories.first.name.humanize %> contest</small>
+                    <h1>
+                      <%= @contest.name %>
+                    </h1>
+                  </div>
+                </div>
+                <%= image_tag( @contest.cover_photo.url(:cover), class: 'img-responsive', width: "100%" )unless @contest.cover_photo.blank? %>
+              </div>
+            </div>
+            <div class="description-details col-lg-12">
+              <div class="row">
+                <%= simple_format(@contest.description.html_safe) %>
+              </div>
+            </div>
+          </div>
+          <!-- details contest -->
+          <div class="col-md-6 col-xs-12">
+            <div class="titleDk col-md-12 col-lg-12 hidden-xs">
+              <div class="row">
+                <small class="tpoContest"><%= @contest.categories.first.name.humanize %> contest</small>
+                <h1>
+                  <%= @contest.name %>
+                </h1>
+              </div>
+            </div>
+            <div class="bidding-box col-lg-12">
+              <div class="row">
+                <div class="info-box">
+                  <!-- COUNTER -->
+                  <div class="counter col-md-12 col-xs-12">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="row">
+                          <span class="is-label col-md-6 col-xs-12">Time left to submit entry</span>
+                          <span class="close-date col-md-6 col-xs-12"><%= @contest.end_time.strftime("%Y/%m/%d %H:%M:%S PST") %></span>
+                        </div>
+                      </div>
+                      <% if @contest.status == "paused" || @contest.status == "active" %>
+                        <div id="timer" class="timer col-md-6 col-xs-12 " data-finaldate="<%= @contest.end_time.strftime("%Y/%m/%d %H:%M:%S PST") %>">
+                          <div id="days"><span class="number"></span><br/>DAYS</div>
+                          <div id="hrs"><span class="number"></span><br/>HRS</div>
+                          <div id="min"><span class="number"></span><br/>MIN</div>
+                          <div id="seg"><span class="number"></span><br/>SEG</div>
+                        </div>
+                      <% else %>
+                        <div id="timer" class="timer col-md-6 col-xs-12 ">
+                          <span><%= @visits %></span>
+                          <span><%= "Visit".pluralize(@visits) %></span>
+                        </div>
+                      <% end %>
+                      <div class="flag col-md-6 col-xs-12">
+                        <% color = contest_time_status(@contest.end_time) %>
+                        <% case color %>
+                        <% when 'red'%>
+                          <span class="btn btn-danger col-xs-12"> CLOSING SOON</span>
+                        <% when 'orange'%>
+                          <span class="btn btn-warning col-xs-12">CLOSING SOON</span>
+                        <% end %>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- CONTEST INFO -->
+                  <div class="contests-info col-md-12 col-xs-12">
+                    <div class="row">
+                      <div class="popular-entry col-md-7  col-xs-12">
+                        <div>
+                          <% if @most_voted_entry.present? %>
+                            <%= link_to entry_path(@most_voted_entry) do %>
+                              <h5>MOST POPULARY ENTRY</h5>
+                              <div class="likes">
+                                  <i class="fa fa-heart"></i>
+                                  <span><%= @most_voted_entry.upvotes.count %></span>
+                              </div>
+                            <% end %>
+                            <a href="<%= user_path(@most_voted_entry.user) %>"><%= @most_voted_entry.user.full_name %></a>
+                          <% else %>
+                            <h5>MOST POPULARY ENTRY</h5>
+                            <div class="likes">
+                              <i class="fa fa-heart"></i>
+                              <span>0</span>
+                            </div>
+                            <a href="javascript:;">&nbsp</a>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="contest-award col-md-5 col-xs-12">
+                        <div>
+                          <h5>CONTEST AWARD</h5>
+                          <span><%= number_to_currency(@contest.reward, precision: 0) %></span>
+                        </div>
+                      </div>
+                      <div class="actions col-md-12 col-xs-12">
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <div class="row">
+                              <% if @contest.status == "active" %>
+                                <% if current_user.present?%>
+                                  <% if @contest.premium && !current_user.premium %>
+                                    <a href="<%= edit_membership_path(current_user.membership, referer_path: request.path) %>" class="btn btn-active">Get Premium Account</a>
+                                  <% else %>
+                                    <a class="btn btn-danger " data-toggle="modal" href='#modal-id'>SUBMIT ENTRY</a>
+                                  <% end %>
+                                <% else %>
+                                  <a href="#" class="btn btn-active logrequired" data-url="<%= new_contest_entry_path(@contest) %>">Submit Entry</a>
+                                <% end %>
+                              <% end %>
+                            </div>
+                          </div>
+                          <% if current_user %>
+                            <div class="watchlist col-xs-6 col-lg-6 noPadLeft">
+                              <% is_watching = current_user.contests.include?(@contest) %>
+                              <%= link_to "WATCHLIST", on_watch_list_contest_path(@contest), method: :put, remote: true, class: "btn btn-primary on_watch #{ 'hide' if is_watching }" %>
+                              <%= link_to "remove from watch list",off_watch_list_contest_path(@contest), :method => :put, remote: true, class: "btn btn-danger off_watch #{ 'hide' unless is_watching }" %>
+                            </div>
+                          <% else %>
+                            <div class="watchlist col-xs-6 col-lg-6 noPadLeft">
+                              <%= link_to "WATCHLIST","#" , method: :put, remote: true, class: "btn btn-primary logrequired" %>
+                            </div>
+                          <% end %>
+                          <div class="share col-xs-6 col-lg-6 noPadRight">
+                            <a  id ="share-contest"  class="btn btn-default ">SHARE</a>
+                          </div>
+                          <div class="share-cloud hide coll-lg-12 pull-right">
+                              <%= render partial: 'contests/social', locals: { contest: @contest} %>
+                          </div>
+
+                        </div>
+                      </div>
+                      <% unless @contest.sponsor.blank? %>
+                        <div class="adsense col-md-12 col-xs-12">
+                          <div class="row">
+                            <% unless @contest.cover_photo.blank?  %>
+                              <div class="col-md-5 col-xs-12 hidden-xs">
+                                <%= image_tag( @contest.cover_photo.url(:cover), class: 'img-responsive', width: "100%" ) %>
+                              </div>
+                            <% end %>
+                            <div class="col-md-7 col-sx-12">
+                              <h3><%= @contest.sponsor %></h3>
+                              <p><%= @contest.sponsor_desc %></p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showDetails col-md-12 col-xs-12">
+            <button type="button" class="btn btn-default center-block" data-toggle="modal" href='#modal-showDetails'>
+              SHOW DETAILS
+            </button>
+          </div>
+
+          <div id="entries" class="col-md-12 col-xs-12">
+            <div class="headerEntries col-md-12">
+              <div class="row">
+                <h5 class="col-md-3"><%= pluralize(params[:controller] == "contests" ? @contest.entries_count : @entries.size, "Entries") %></h5>
+                <div class="filter-menu col-md-4 pull-right">
+                  <% if params[:controller] == "contests"%>
+                    <ul class="list-inline">
+                      <li class="active" ><%= link_to "Recent", contest_entries_path(@contest, order_by: 'recent'), class: "#{'active' if params[:order_by].nil? || params[:order_by] == 'recent'}", remote: true %></li>
+                      <li><%= link_to "Most Votes", contest_entries_path(@contest, order_by: 'upvotes'), class: "#{'active' if params[:order_by] == 'upvotes'}", remote: true %></li>
+                    </ul>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="entries-container col-md-12">
+              <div class="row">
+                <% if @entries.empty? %>
+                <div class="empty-entries col-md-12 col-xs-12 col-ls-12 col-sm-12">
+                  <span class="icon"><%= image_tag "icn/icon_emptyentries.png", alt: "" %></span>
+                  <span class="text">No Entries Yet</span>
+                  <span class="subtext">Please submit an entry, Thank you!</span>
+                </div>
+                <% else %>
+                  <%= render @entries %>
+                <% end %>
+              </div>
+            </div>
+
+          </div>
+
+          <div id="simiralContest" class="col-md-12 visible-md visible-lg">
+            <h5>SIMILAR CONTESTS</h5>
+              <% if @similar_contests.empty? %>
+                <div class="empty-entries">
+                  <span class="icon"><%= image_tag "icn/icon_emptyentries.png" %></span>
+                  <span class="text">No Contest Yet</span>
+                </div>
+              <% else %>
+                <%= render partial: "contests/contest", collection: @similar_contests, as: :contest, locals: {column_class: 'col-lg-3'} %>
+              <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- MODAL SUBMIT ENTRY -->
+  <div class="modal fade " id="modal-id">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h2>Submit Entry</h2>
+          <%= render partial: "entries/form" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<!-- MODAL SUBMIT ENTRY -->
+
+<!-- MODAL SHOW DETAILS -->
+<div class="modal fade" id="modal-showDetails">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h2>Contest Details</h2>
+        <p>
+          <strong>Competition Name:</strong>
+        </p>
+        <p>
+          <%= @contest.name %>
+        </p>
+        <p>
+          <strong>Competition Type/Genre:</strong>
+        </p>
+        <p>
+          <%= @contest.categories.pluck(:name).join(", ").capitalize %>
+        </p>
+        <p>
+          <strong>Sponsor:</strong>
+        </p>
+        <p>
+          <%= @contest.sponsor %>
+        </p>
+        <p>
+          <strong>Award Amount:</strong>
+        </p>
+        <p>
+          <%= number_to_currency(@contest.reward, precision: 0) %>
+        </p>
+        <p>
+          <strong>Duration:</strong>
+        </p>
+        <p>
+          <%= distance_of_time_in_words(@contest.start_date, @contest.end_time, false, :only => ["years","days", "months"]) %>
+        </p>
+        <p>
+          <strong>Start Date: </strong>
+        </p>
+        <p>
+          <%= @contest.start_date.strftime("%B %d %Y") %>
+        </p>
+        <p>
+          <strong>End Date:</strong>
+        </p>
+        <p>
+          <%= @contest.end_time.strftime("%B %d %Y") %>
+        </p>
+        <p>
+          <strong>Maximun Entries per User:</strong>
+        </p>
+        <p>
+          <%= @contest.max_entries_per_user%> unique entries
+        </p>
+        <p>
+          <strong>Additional Details:</strong>
+        </p>
+        <p>
+          <%= @contest.additional_details.html_safe %>
+        </p>
+        <p>
+          <strong>Judging Criteria:</strong>
+        </p>
+        <p>
+          <%= @contest.judging_criteria.html_safe %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

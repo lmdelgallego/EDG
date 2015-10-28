@@ -1,0 +1,134 @@
+<div>
+    <span class="label-form">Upload a Profile Photo</span>
+    <div class="fileinput fileinput-new" data-provides="fileinput">
+      <span class="btn btn-active btn-file"><span class="fileinput-new">Select</span><span class="fileinput-exists">Change</span><%= f.file_field :profile_image %></span>
+      <span class="fileinput-filename"></span>
+      <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+    </div>
+    <% unless @user.profile_image.blank? %>
+      <div>
+      <label><%= f.check_box :remove_profile_image %> Remove this picture</label>
+      </div>
+    <% end %>
+</div>
+<div>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+</div>
+<div>
+    <%= f.label :full_name %><br />
+    <%= f.text_field :full_name %>
+</div>
+<div>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+</div>
+<div class="abouttext countcharacter">
+    <%= f.label :description, "About Me (500 characters)" %><br />
+    <%= f.text_area :description, :maxlength => "500" %>
+    <div id="textarea_feedback"></div>
+</div>
+<div>
+  <%= f.label :street_address, "Address *" %><br />
+  <%= f.text_field :street_address %>
+</div>
+<div>
+  <%= f.label :address_2, "Address 2 " %><br />
+  <%= f.text_field :address_2 %>
+</div>
+<div><%= f.label :state_id, "State" %><br />
+<%= f.collection_select(:state_id, State.all, :id, :name, {},{ :class => "selectpicker" } )%></div>
+<div>
+  <%= f.label :city, "City" %><br />
+  <%= f.text_field :city %>
+</div>
+<div>
+  <%= f.label :zipcode, "Zipcode" %><br />
+  <%= f.text_field :zipcode %>
+</div>
+<div>
+  <%= f.fields_for :alma_mater_per_user do |alma_mater| %>
+    <%= alma_mater.label :name, "Alma Mater" %><br />
+    <%= alma_mater.collection_select(:alma_mater_id, AlmaMater.all, :id, :name, {},{ :class => "selectpicker" } ) %>
+  <% end %>
+</div>
+
+<div class="onyl-year-month">
+  <%= f.label :graduation_date, "Graduation / Assumed Date" %><br />
+  <%= f.text_field :graduation_date, value: @user.graduation_date.blank? ? "" : @user.graduation_date.utc.strftime("%m/%Y"), class: "date" %>
+</div>
+<div>
+  <%= f.label :degree_id %><br />
+  <%= f.collection_select(:degree_id, Degree.all, :id, :name, {},{ :class => "selectpicker" } ) %>
+</div>
+<div>
+  <%= f.label :major_course_id, "Major course of study *" %><br />
+  <%= f.text_field :major_course_id %></div>
+<div><%= f.label :minor_course_id, "Minor course of study*" %><br />
+  <%= f.text_field :minor_course_id %>
+</div>
+<div>
+  <%= f.label :amount, "Total Amount" %><br />
+  <%= f.text_field :amount, class: "loan-amount", data: { a_sign: "$", a_dec: ".", a_sep: "," }  %>
+</div>
+<% if params[:controller] == "users" %>
+  <div>
+      <%= f.label :current_password %><br />
+      <%= f.password_field :current_password %>
+  </div>
+<% end %>
+<div>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+</div>
+<div>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+</div>
+
+
+<% unless params[:controller] == "admin/users"%>
+  <div class="admin-btn-social">
+    <ul>
+      <% if @user.social_profile_for_provider("facebook").nil? %>
+        <li class="facebook">
+        <%= link_to user_omniauth_authorize_path(:facebook, donor: @user.donor) do %>
+          <span class="icn fblogin"></span>
+          <span>Facebook</span>
+        <% end %>
+        </li>
+      <% end %>
+      <% if @user.social_profile_for_provider("twitter").nil? %>
+        <li class="twitter">
+          <%= link_to user_omniauth_authorize_path(:twitter, donor: @user.donor) do %>
+            <span class="icn twlogin"></span>
+            <span>Twitter</span>
+          <% end %>
+        </li>
+      <% end %>
+      <% if @user.social_profile_for_provider("linkedin").nil? %>
+        <li class="linkedin">
+          <%= link_to user_omniauth_authorize_path(:linkedin, donor: @user.donor) do %>
+            <span class="icn lkdnlogin"></span>
+            <span>Linkedin</span>
+          <% end %>
+        </li>
+      <% end %>
+      <% if @user.social_profile_for_provider("google").nil? %>
+        <li class="googlep">
+          <%= link_to user_omniauth_authorize_path(:google, donor: @user.donor) do %>
+            <span class="icn gplogin"></span>
+            <span>Google+</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="actions">
+  <%= f.submit "Save" %>
+  <% if params[:controller] == "admin/users" %>
+	  <a href="<%= admin_users_path %>" class="canceladmin btn btn-bordergrey">Cancel</a>
+  <% end %>
+</div>

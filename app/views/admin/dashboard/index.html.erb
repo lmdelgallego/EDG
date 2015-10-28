@@ -1,0 +1,78 @@
+<span class="title mt0">Dashboard</span>
+
+<div class="stats-admin">
+	<div class="stats-div <%= 'w310' unless current_admin.super? %>">
+    <% if current_admin.super? %>
+		<div>
+			<span><%= @visitors_count %></span>
+			<span><%= "Visitor".pluralize(@visitors_count) %></span>
+		</div>
+    <% end %>
+		<div>
+			<span><%= @entries_count %></span>
+			<span><%= "Submission".pluralize(@entries_count) %></span>
+		</div>
+    <%# if can? :index, Donation %>
+		<!-- <div>
+			<span><%= number_to_currency(Donation.total_amount, precision: 0) %></span>
+			<span>Donations</span>
+		</div> -->
+    <%# end %>
+		<div>
+			<span><%= @total_contests.count %></span>
+			<span><%= "Contest".pluralize(@total_contests.count) %></span>
+		</div>
+	</div>
+</div>
+
+<% if can? :index, User %>
+<div class="user-activity">
+	<div class="recent">
+		<span class="title">Recent Users</span>
+		<% if @recent_users.empty? %>
+			<div class="emptylist">
+				<span>No new users in the last week</span>
+			</div>
+		<% else %>
+			<div class="activity container-scroller">
+				<div class="list">
+					<%= render partial: "user", collection: @recent_users, as: :user %>
+				</div>
+			</div>
+			<div class="actions">
+			  <%= link_to "See All", admin_users_path, class: "btn btn-active" %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="users">
+		<span class="title">User Activity</span>
+		<% if @recent_activities.empty? %>
+			<div class="emptylist">
+				<span>No new activity in the last week</span>
+			</div>
+		<% else %>
+			<div class="activity container-scroller">
+				<div class="list">
+	        <%= render partial: "activity", collection: @recent_activities, as: :activity %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+<% end %>
+
+<div class="active-contest">
+	<span class="title">Active Contest (<%= @contests.active.count %>)</span>
+	<% if @recent_contests.empty? %>
+		<div class="emptylist">
+			<span>No Contests yet!</span>
+		</div>
+	<% else %>
+		<div class="list">
+	    <%= render partial: "contest", collection: @recent_contests, as: :contest %>
+		</div>
+		<%= link_to "See All", admin_contests_path, class: "btn btn-active" %>
+	<% end %>
+</div>
+

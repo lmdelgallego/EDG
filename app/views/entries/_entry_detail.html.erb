@@ -1,0 +1,66 @@
+<% contest_type = @contest.contest_type %>
+<div class="modal-header">
+  <div class="top-with-user">
+    <h3><%= @entry.name %></h3>
+    <% if @entry.contest.show_entry_user_name %>
+      <div class="user">
+        <span>By <%= link_to @entry.user.username , user_path(@entry.user), method: :get %></span>
+        <span>
+          <% if @entry.user.profile_image.blank? %>
+            <%= link_to (image_tag "misc/profile_pic.png", alt: ""), user_path(@entry.user), method: :get %>
+          <% else %>
+            <%= link_to (image_tag @entry.user.profile_image_url(:thumb)), user_path(@entry.user), method: :get %>
+          <% end %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="modal-body">
+  <div>
+    <% case contest_type %>
+    <% when "caption", "image" %>
+    <div class="img-cont-zoom">
+      <div class="image-container">
+        <%= image_tag @entry.attachment.url, alt: "" %>
+      </div>
+      <a class="full-size" href="<%= @entry.attachment.url %>" target="_blank"><span class="icn icnzoom"></span></a>
+    </div>
+    <% when "audio" %>
+      <div class="player-audio" data-url="<%= @entry.audio_attachment.url %>">
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+        <div id="jp_container_1" class="jp-audio">
+            <div class="jp-type-single">
+                <div class="jp-gui jp-interface">
+                    <ul class="jp-controls">
+                        <li><a href="javascript:;" class="jp-play" tabindex="1"><%= image_tag "icn/icn_play.png", alt: "" %></a></li>
+                        <li><a href="javascript:;" class="jp-pause" tabindex="1"><%= image_tag "icn/icn_pause.png", alt: "" %></a></li>
+                    </ul>            
+                </div>
+                <div class="jp-no-solution">
+                    <span>Update Required</span>
+                    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                </div>
+            </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="votes-share">
+      <div class="">
+        <% if user_signed_in? %>
+          <%= link_to upvote_contest_entry_path(@contest, @entry), class: "btn-upvote", method: :post, remote: true do %>
+            <span class="icn upvt"></span>
+            <span class="upvote-count"><%= @entry.upvotes_count %></span>
+          <% end %>
+        <% end %>
+        <div class="share-cloud">
+          <div class="btn-share">
+            <span class="icn share"></span>
+          </div>
+          <%= render partial: 'entries/social', locals: { contest: @contest, entry: @entry } %>
+        </div>
+      </div>
+    </div>
+    <p><%= simple_format(@entry.description) %></p>
+  </div>
+</div>

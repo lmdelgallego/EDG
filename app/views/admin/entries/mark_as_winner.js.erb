@@ -1,0 +1,8 @@
+
+$entry = $("#entry-<%= @entry.id %>");
+$entry_name = $(".entry-name", $entry);
+$entry_name.html("(WINNER) <%= @entry.name %>").addClass("winner-entry");
+$link_winner = $(".mark-as-winner", $entry);
+$link_undo = $(".undo-winner", $entry);
+$link_winner.addClass('hide');
+$link_undo.removeClass('hide');

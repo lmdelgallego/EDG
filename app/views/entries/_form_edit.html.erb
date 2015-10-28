@@ -1,0 +1,82 @@
+<h2>Edit - <%= @entry.name %></h2>
+<%= nested_form_for @entry, url: contest_entry_path(@contest,@entry), method: :put do |f| %>
+  <% @categories = @contest.categories.pluck(:name) %>
+  <fieldset>
+    <%= f.label :name, 'Entry Name' %>
+    <%= f.text_field :name, required: true %>
+  </fieldset>
+
+  <fieldset>
+    <% if @categories.include?('caption')  %>
+      <%= f.label :description, 'Caption'  %>
+    <% else %>
+      <%= f.label :description , 'Description(500 chars left)'%>
+    <% end %>
+    <%= f.text_area :description,:class => "h164 entrytextarea" , :maxlength=>@contest.descriptionl %>
+    <div id="textarea_feedback"></div>
+    </fieldset>
+    <fieldset>
+    <% if @categories.include?('text') %>
+      <%= f.label :body , 'Body'%>
+      <%= f.text_area :body, :class => "h164 entrytextarea" %>
+    <% end %>
+  </fieldset>
+  <fieldset>
+    <% if @categories.include?('video') %>
+      <%= f.label :video_url , 'YouTube Video Url'%>
+      <%= f.text_field :video_url %>
+    <% end %>
+  </fieldset>
+
+  <%= f.fields_for :entry_attachments do |a| %>
+    <% if a.object.category_id == 2 %>
+      <fieldset>
+        <h5>Upload Audio</h5>
+        <span class="fileinput-new">Select Audio</span>
+        <span class="fileinput-exists">Change</span> 
+        <%= a.file_field :audio_attachment %>
+        <%= a.hidden_field :category_id, :value => 2 %>
+      </fieldset>
+    <% elsif a.object.category_id == 1 %>
+      <fieldset>
+        <div class="upload-images">
+        <div class="head-upload-images">
+          <h5>Upload Images</h5>
+          <span>.jpg, .png only, 500kb max</span>
+        </div>
+        <div class="image-preview" style="background-image:url(<%= a.object.attachment_url %>);"></div>
+        <div class="upload fileinput fileinput-new input-group upfile edit-image-prev" data-provides="fileinput">
+          <span class="fileinput-new">Select Image</span>
+          <span class="fileinput-exists">Change</span>
+          <%= a.file_field :attachment %>
+          <%= a.hidden_field :category_id, :value => 1 %> 
+      </fieldset>
+    <% else %>
+      <fieldset>
+        <div class="upload-images">
+        <div class="head-upload-images">
+          <h5>Upload Images</h5>
+          <span>.jpg, .png only, 500kb max</span>
+        </div>
+        <div class="image-preview" style="background-image:url(<%= a.object.attachment_url %>);"></div>
+        <div class="upload fileinput fileinput-new input-group upfile edit-image-prev" data-provides="fileinput">
+          <span class="fileinput-new">Select Image</span>
+          <span class="fileinput-exists">Change</span>
+          <%= a.file_field :attachment %>
+          <%= a.hidden_field :category_id, :value => 1 %> 
+      </fieldset>
+    <% end %>  
+  <% end %>
+
+  <% if @contest.multiple_images == 1 %>
+      <%= f.link_to_add "+ Add More Images", :entry_attachments %></br>
+  <% end %>
+
+
+
+  <%= f.submit "Submit", :class => "sub btn green closeformentry " %>
+  <input type="reset" value="Cancel" class="closeformentry  hide-form btn gray ">
+
+
+<% end %>
+       

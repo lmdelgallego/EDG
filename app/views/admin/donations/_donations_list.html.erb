@@ -1,0 +1,10 @@
+<% if @donations.empty? %>
+	<div class="emptylist">
+		<span>No Donation Activity yet!</span>
+	</div>
+<% else %>
+	<div class="list">
+    <%= render @donations %>
+	</div>
+	<%= will_paginate @donations, :renderer => PaginationLinkRenderer %>
+<% end %>

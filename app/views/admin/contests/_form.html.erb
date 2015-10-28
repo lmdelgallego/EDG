@@ -1,0 +1,275 @@
+
+<div class="form-new-contest">
+  <% categories = @contest.categories.pluck(:name) %>
+<%= nested_form_for [:admin, @contest] do |f| %>
+<!-- Error Messages -->
+  <% if @contest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
+
+      <ul>
+      <% @contest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- Contest Categories -->
+  <% if categories.empty? %>
+  <div class="fields">
+    <%= f.fields_for :category_contests do |c| %>
+      <%= c.collection_check_boxes :category_id, Category.all , :id, :name %>
+    <% end %>
+  </div>
+  <% else %>
+    <% categories.each do |c| %>
+      <label><%= c %></label>
+      <input type ="checkbox" disabled="disabled" checked="checked" >
+    <% end %>
+  <% end %>
+  <!-- Allow users to upload multiple images -->
+  <div class="field">
+    <%= f.label :multiple_images, 'Allow users to upload multiple images? ', :class => params[:action] == "edit" && categories.include?("image") ? "" :  "hide" %>
+    <%= f.check_box(:multiple_images, :class=> params[:action] == "edit"  && categories.include?("image")   ? "" :  "hide") %>
+  </div>
+<!-- User cover photo as reference -->
+
+  <div class="field">
+   <%= f.label :show_image, 'Use contest photo as reference image', :class => params[:action] == "edit" && categories.include?("text") ? "" :  "hide" %>
+   <%= f.check_box(:show_image, :class=> params[:action] == "edit" && categories.include?("text") ? "" :  "hide") %>
+ </div>
+
+<!-- User cover photo as reference in entry -->
+ <div class="field">
+  <%= f.label :show_image_on_entry, 'Show reference image on entry detail page', :class => params[:action] == "edit" && categories.include?("text") ? "" :  "hide" %>
+  <%= f.check_box(:show_image_on_entry, :class=> params[:action] == "edit" && categories.include?("text") ? "" :  "hide") %>
+</div>
+
+<!-- Upload Caption Image -->
+ <div id="caption-image-field">
+   <%= f.label :caption_image %><br>
+    <%= @contest.caption_image.url.blank? ? "" : link_to('See photo', @contest.caption_image.url, :target => "_blank" )%>
+   <div class="fileinput fileinput-new input-group upfile" data-provides="fileinput">
+       <div class="form-control" data-trigger="fileinput">
+           <i class="glyphicon glyphicon-file fileinput-exists"></i>
+           <span class="fileinput-filename"></span>
+       </div>
+       <span class="input-group-addon btn btn-active btn-file">
+           <span class="fileinput-new">Select file</span>
+           <span class="fileinput-exists">Change</span>
+           <%= f.file_field :caption_image %>
+       </span>
+       <a href="#" class="input-group-addon btn btn-bordergrey fileinput-exists" data-dismiss="fileinput">Remove</a>
+   </div>
+ </div>
+
+ <!-- Cover photo -->
+
+ <div>
+   <%= f.label :cover_photo %><br>
+   <%= @contest.cover_photo.url.blank? ? "" : link_to('See photo', @contest.cover_photo.url, :target => "_blank" )%>
+   <div class="fileinput fileinput-new input-group upfile" data-provides="fileinput">
+     <div class="form-control" data-trigger="fileinput">
+       <i class="glyphicon glyphicon-file fileinput-exists"></i>
+       <span class="fileinput-filename"></span>
+     </div>
+     <span class="input-group-addon btn btn-active btn-file">
+       <span class="fileinput-new">Select file</span>
+       <span class="fileinput-exists">Change</span>
+       <%= f.file_field :cover_photo %>
+     </span>
+     <a href="#" class="input-group-addon btn btn-bordergrey fileinput-exists" data-dismiss="fileinput">Remove</a>
+   </div>
+ </div>
+
+ <!-- Cover M  photo -->
+
+ <div>
+   <%= f.label :cover_m_photo, 'Cover Thumbnail photo' %><br>
+   <%= @contest.cover_m_photo.url.blank? ? "" : link_to('See photo', @contest.cover_m_photo.url, :target => "_blank" )%>
+   <div class="fileinput fileinput-new input-group upfile" data-provides="fileinput">
+     <div class="form-control" data-trigger="fileinput">
+       <i class="glyphicon glyphicon-file fileinput-exists"></i>
+       <span class="fileinput-filename"></span>
+     </div>
+     <span class="input-group-addon btn btn-active btn-file">
+       <span class="fileinput-new">Select file</span>
+       <span class="fileinput-exists">Change</span>
+       <%= f.file_field :cover_m_photo %>
+     </span>
+     <a href="#" class="input-group-addon btn btn-bordergrey fileinput-exists" data-dismiss="fileinput">Remove</a>
+   </div>
+ </div>
+
+   <!-- Banner Photo -->
+
+   <div>
+     <%= f.label :banner_photo, 'Banner photo' %><br>
+     <%= @contest.banner_photo.url.blank? ? "" : link_to('See photo', @contest.banner_photo.url, :target => "_blank" )%>
+     <div class="fileinput fileinput-new input-group upfile" data-provides="fileinput">
+       <div class="form-control" data-trigger="fileinput">
+         <i class="glyphicon glyphicon-file fileinput-exists"></i>
+         <span class="fileinput-filename"></span>
+       </div>
+       <span class="input-group-addon btn btn-active btn-file">
+         <span class="fileinput-new">Select file</span>
+         <span class="fileinput-exists">Change</span>
+         <%= f.file_field :banner_photo %>
+       </span>
+       <a href="#" class="input-group-addon btn btn-bordergrey fileinput-exists" data-dismiss="fileinput">Remove</a>
+     </div>
+   </div>
+
+  <!-- Contest Name -->
+
+  <div class="field">
+    <%= f.label :name, 'Contest Name' %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <!-- Contest description -->
+
+  <div class="field h110 editor">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+
+<!--   Insert hyperlink  -->
+
+  <div id="wysihtml5-toolbar-1" class="editor-textarea" style="display: none;">
+      <a data-wysihtml5-command="createLink">insert link</a>
+      <div data-wysihtml5-dialog="createLink" style="display: none;">
+            <label>
+              Link:
+              <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+            </label>
+            <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+      </div>
+  </div>
+
+<!--  END  Insert hyperlink -->
+
+
+  <div class="field h110 editor">
+    <%= f.label :additional_details %><br>
+    <%= f.text_area :additional_details %>
+  </div>
+
+
+<!--    Insert hyperlink   -->
+
+      <div id="wysihtml5-toolbar-2" class="editor-textarea" style="display: none;">
+          <a data-wysihtml5-command="createLink">insert link</a>
+          <div data-wysihtml5-dialog="createLink" style="display: none;">
+                <label>
+                  Link:
+                  <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+                </label>
+                <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+          </div>
+      </div>
+
+  <!--  END  Insert hyperlink -->
+
+
+  <div class="field h110 editor">
+    <%= f.label :judging_criteria %><br>
+    <%= f.text_area :judging_criteria %>
+  </div>
+
+<!--   Insert hyperlink   -->
+
+  <div id="wysihtml5-toolbar-3" class="editor-textarea" style="display: none;">
+      <a data-wysihtml5-command="createLink">insert link</a>
+      <div data-wysihtml5-dialog="createLink" style="display: none;">
+            <label>
+              Link:
+              <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+            </label>
+            <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+      </div>
+  </div>
+
+<!--  END  Insert hyperlink -->
+
+
+
+  <div class="field">
+    <div class="date-field mr30">
+      <%= f.label :start_date, "Start Date & Time" %><br>
+      <div class="input-group date">
+        <%= f.text_field :start_date, value: @contest.start_date.blank? ? Time.now.strftime("%m-%d-%Y") : @contest.start_date.strftime("%m-%d-%Y"), class: "startdate" %>
+        <%= f.select :start_hour, [ '01:00:00', '02:00:00', '03:00:00', '04:00:00', '05:00:00', '06:00:00', '07:00:00', '08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', '14:00:00', '15:00:00', '16:00:00', '17:00:00', '18:00:00', '19:00:00', '20:00:00', '21:00:00', '22:00:00', '23:00:00', '24:00:00' ], {}, { class: 'selectpicker hour', :prompt => 'Select Start Time'} %>
+      </div>
+    </div>
+    <div class="date-field">
+      <%= f.label :end_time, "End Date & Time" %><br>
+      <div class="input-group date">
+        <%= f.text_field :end_time, value: @contest.end_time.blank? ? "" : @contest.end_time.strftime("%m-%d-%Y"), class: "enddate" %>
+        <%= f.select :end_hour, [ '01:00:00', '02:00:00', '03:00:00', '04:00:00', '05:00:00', '06:00:00', '07:00:00', '08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', '14:00:00', '15:00:00', '16:00:00', '17:00:00', '18:00:00', '19:00:00', '20:00:00', '21:00:00', '22:00:00', '23:00:00', '24:00:00' ], {}, { class: 'selectpicker hour', :prompt => 'Select Start Time'} %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :reward %><br>
+    <%= f.text_field :reward, :class => "makereward", data: { a_sign: "$", a_dec: ".", a_sep: ","} %>
+  </div>
+  <div class="field">
+    <%= f.label :show_entry_user_name, "Show username on every entry?" %><br>
+    <%= f.radio_button :show_entry_user_name, true %>
+    <%= label_tag :entry_user_name_yes, "Yes" %><br>
+    <%= f.radio_button :show_entry_user_name, false %>
+    <%= label_tag :entry_user_name_yes, "No, only date and time" %>
+  </div>
+  <div class="field">
+    <%= f.label :max_entries_per_user %><br>
+    <%= f.number_field :max_entries_per_user, min: 1 %>
+  </div>
+  <div class="field">
+    <%= f.label :descriptionl, "Number of characters for description" %><br>
+    <%= f.number_field :descriptionl %>
+  </div>
+  <div class="field">
+    <%= f.label :sponsor, 'Sponsor Name' %><br>
+    <%= f.text_field :sponsor %>
+  </div>
+  <div class="field">
+    <%= f.label :sponsor_desc, 'Sponsor Description' %><br>
+    <%= f.text_area :sponsor_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :sponsor_url, 'Sponsor Url' %><br>
+    <%= f.text_field :sponsor_url %>
+  </div>
+   <div>
+    <%= f.label :sponsor_photo %><br>
+     <%= @contest.sponsor_photo.url.blank? ? "" : link_to('See photo', @contest.sponsor_photo.url, :target => "_blank" )%>
+    <div class="fileinput fileinput-new input-group upfile" data-provides="fileinput">
+        <div class="form-control" data-trigger="fileinput">
+            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+            <span class="fileinput-filename"></span>
+        </div>
+        <span class="input-group-addon btn btn-active btn-file">
+            <span class="fileinput-new">Select file</span>
+            <span class="fileinput-exists">Change</span>
+            <%= f.file_field :sponsor_photo %>
+        </span>
+        <a href="#" class="input-group-addon btn btn-bordergrey fileinput-exists" data-dismiss="fileinput">Remove</a>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :private, "Privacy" %><br>
+    <%= f.select :private, [["Public", false], ["Private", true]], {}, { class: "selectpicker" } %>
+  </div>
+  <div class="field">
+    <%= f.label :premium, "User Type" %><br>
+    <%= f.select :premium, [["Free", false], ["Premium", true]], {}, { class: "selectpicker" } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+    <a href="<%= admin_contests_path %>" class="canceladmin btn btn-bordergrey">Cancel</a>
+  </div>
+<% end %>
+</div>

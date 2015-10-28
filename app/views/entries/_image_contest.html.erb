@@ -1,0 +1,43 @@
+
+<%= form_for @entry, url: contest_entries_path(@contest, @entry), remote: true, :html => { :multipart => true } do |f| %>
+  <div class="field">
+    <%= f.label :name, 'Entry Name' %><br>
+    <%= f.text_field :name, autofocus: true, required: true %>
+  </div>
+  <div class="field countcharacter">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, :class => "h164" %>
+    <div id="textarea_feedback"></div>
+  </div>
+    <div class="field">
+      <br>
+      <div class="fileinput fileinput-new input-group upfile" data-provides="fileinput">
+          <div class="form-control" data-trigger="fileinput">
+              <i class="glyphicon glyphicon-file fileinput-exists"></i>
+              <span class="fileinput-filename"></span>
+          </div>
+          <span class="input-group-addon btn btn-active btn-file">
+              <!-- <span class="fileinput-new">Select file</span>
+              <span class="fileinput-exists">Change</span> -->
+
+                <% if @contest.multiple_images == 0 %>
+                    <%= f.label :attachment %>
+                  <% else %>
+                    <%= nested_form_for @entry, mutipart: true, url: contest_entries_path(@contest) do |e| %>
+                      <%= e.fields_for :entry_attachments do |f| %>
+                        <%= f.label :attachment %><br>
+                        <%= f.file_field :attachment, :multiple => true, name: "entry_attachments[attachment][]" %>
+                      <% end %>
+                      <p><%= e.link_to_add "Submitdddd", :entry_attachments %></p>
+                    <% end %>
+                  <% end %>
+
+          </span>
+          <a href="#" class="input-group-addon btn btn-bordergrey fileinput-exists" data-dismiss="fileinput">Remove</a>
+      </div>
+    </div>
+  <div class="actions">
+    <%= f.submit "Submit", :class => "sub" %>
+    <a href="#" class="btn btn-bordergrey" data-dismiss="modal" aria-hidden="true">Cancel</a>
+  </div>
+<% end %>

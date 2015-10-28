@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+      <meta charset="utf-8">
+      <title>Contagious Ideas</title>
+      <meta name="description" content="">
+      <meta name="author" content="Ricardo De León - Amparo Luna">
+      <meta name="viewport" content="width=device-width">
+      <link rel="shortcut icon" href="/favicon.ico">
+      <%= stylesheet_link_tag    'application', media: 'all' %>
+      <%= stylesheet_link_tag    'admin-site', media: 'all' %>
+      <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <%= csrf_meta_tags %>
+  </head>
+
+<body>
+
+    <div class="left-bar">
+        <div class="user-admin-panel">
+            <div class="img-profile">
+              <% if current_admin.profile_image.blank? %>
+                <%= image_tag "icn/icon_uploadimg.png", alt: "", class: "icnuploadimg" %>
+              <% else %>
+                <%= image_tag(current_admin.profile_image_url) %>
+              <% end %>
+            </div>
+            <span><%= current_admin.name %></span>
+        </div>
+        <nav>
+            <a href="<%= admin_dashboard_path %>" class="<%= 'active' if params[:controller] == 'admin/dashboard' %>">
+              <span class="icn dashboard"></span>Dashboard
+            </a>
+            <% if can? :index, User %>
+            <a href="<%= admin_users_path(payment_status: 'false') %>" class="<%= 'active' if params[:controller] == 'admin/users' && params[:payment_status] == 'false' %>">
+              <span class="icn users"></span>Free users
+            </a>
+            <a href="<%= admin_users_path(payment_status: 'true') %>" class="<%= 'active' if params[:controller] == 'admin/users' && params[:payment_status] == 'true'%>">
+              <span class="icn users"></span>Premium users
+            </a>
+            <% end %>
+            <a href="<%= admin_contests_path(status: 'active') %>" class="<%= 'active' if params[:controller] == 'admin/contests' %>">
+              <span class="icn contestad"></span>Contests
+            </a>
+         <!--    <% if can? :index, Donation %>
+            <a href="<%= admin_donations_path %>" class="<%= 'active' if params[:controller] == 'admin/donations' %>">
+              <span class="icn donations"></span>Donations
+            </a>
+            <% end %> -->
+            <% if can? :index, Admin %>
+            <a href="<%= admin_admins_path %>" class="<%= 'active' if (params[:controller] == 'admin/admins' && params[:action] != "profile_settings") || params[:controller] == 'devise/invitations' %>">
+              <span class="icn admins"></span>Admins
+            </a>
+            <a href="<%= admin_plans_path %>" class="<%= 'active' if params[:action] == 'admin/plans' %>">
+              <span class="icn donations"></span>Plans
+            </a>
+            <a href="<%= admin_grants_path %>" class="<%= 'active' if params[:controller] == 'admin/grants' %>">
+              <span class="icn users"></span>Winners
+            </a>
+            <% end %>
+            <a href="<%= admin_settings_path %>" class="<%= 'active' if params[:action] == 'profile_settings' %>">
+              <span class="icn settings"></span>Settings
+            </a>
+
+            <%= link_to destroy_admin_session_path, method: :delete do %>
+              <span class="icn logout"></span>Logout
+            <% end %>
+        </nav>
+    </div>
+
+    <div class="content-side">
+        <%= yield %>
+    </div>
+
+  <%= render "layouts/flashes" %>
+  <!-- JS
+  ========================================= -->
+  <%= javascript_include_tag 'admin/application' %>
+
+</body>
+</html>

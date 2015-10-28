@@ -1,0 +1,19 @@
+<% @contest = entry.contest %>
+<% cat = @contest.categories.first.name %>
+
+<div class="entry col-md-12 col-xs-12">
+  <a href="<%= entry_path(entry) %>">
+    <h4 class="col-md-6 row">
+      <%= entry.name %>
+      <br />
+      <small> <%= params[:controller] == "users"  ? "#{cat.humanize} contest" : "" %>  </small>
+    </h4>
+  </a>
+  <div class="like-content col-md-6 pull-right text-right">
+    <span class="entry-likes"><i class="fa fa-heart"></i> <%= entry.upvotes_count %></span>
+    <% if params[:controller] != "users" %>
+      by
+      <span class="entry-author"> <%= link_to entry.user.username, user_path(entry.user) %></span>
+    <% end %>
+  </div>
+</div>

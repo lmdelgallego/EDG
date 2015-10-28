@@ -1,0 +1,11 @@
+<% if @grants.empty? %>
+	<div class="emptylist">
+		<span>No Winners yet!</span>
+	</div>
+<% else %>
+	<div class="list">
+    <%= render @grants %>
+	</div>
+<% end %>
+
+<%= will_paginate @grants, :renderer => PaginationLinkRenderer, :params => {:status => params[:status]} %>

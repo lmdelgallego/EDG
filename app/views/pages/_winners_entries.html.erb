@@ -1,0 +1,25 @@
+<div class="contest-thumb post-thumb" data-winner-name="<%= entry.user.username %>" data-winner-url="<%= contest_entry_path(entry.contest, entry)%>" id="entry-<%=entry.name%>">
+	<div class="head-thumb thumb <%= entry.contest.categories.first.name %>" style="background:url(<%= entry_picture_url(entry)%>)">
+		<a href="<%= contest_entry_path(entry.contest, entry)%>" class="detailentry" role="button" data-toggle="modal" data-url="<%= contest_entry_path(entry.contest, entry)%>"></a>
+		<a class="winner-state detailentry" href="#detailcontest" role="button" data-toggle="modal" data-url="">
+	      <img alt="" src="/misc/winner.png"><span><%= entry.name %></span>
+	      <% if entry.contest.show_entry_user_name%>
+	        <span>By <%= entry.user.username%></span>
+	      <% end %>
+   		</a>
+	</div>
+	<div class="foot-thumb">
+    <% if entry.contest.show_entry_user_name%>
+		<a href="<%= user_path(entry.user)%>"><%= entry.user.username %></a>
+    <% end %> 
+		<h1><a href="<%= contest_entry_path(entry.contest, entry)%>"><%= entry.name %></a></h1>
+		<div>
+			<span class="price"><strong><%= number_to_currency(entry.contest.reward, precision: 0)%></strong> Prize</span>
+			<a class="btn-upvote ">
+				<span class="icn heart"></span>
+				<span class="upvote-count"><%= entry.upvotes_count %></span>
+			</a>
+		</div>
+		<span></span>
+	</div>
+</div>

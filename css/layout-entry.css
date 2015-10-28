@@ -1,0 +1,77 @@
+#entry-nav {
+  border-bottom: 2px solid #dce3e4;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+#entry-nav .btn span {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#entry-container {
+  margin-bottom: 20px;
+}
+#entry-container .title h1 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+#entry-container .by-user {
+  margin-bottom: 20px;
+}
+#entry-container .by-user .user-avatar {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#entry-container .by-user .user-name {
+  padding-top: 10px;
+  margin-left: 10px;
+}
+#entry-container .entry-desc {
+  margin-bottom: 20px;
+}
+#entry-container .entry-desc h5 {
+  color: #2ecc71;
+  font-weight: bold;
+}
+#entry-container .entry-desc p {
+  font-weight: 300;
+  font-size: 14px;
+}
+#entry-container .entry-desc .btn.like i {
+  transform: scale(1);
+  transition: transform 0.2s;
+}
+#entry-container .entry-desc .btn.like:active i {
+  transform: scale(1.5);
+}
+#carousel-entry div {
+  margin: 0 5px;
+}
+#carousel-entry div.active img {
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+  opacity: 1;
+  -webkit-opacity: 1;
+  transition: 2s ease;
+  -webkit-transition: 2s ease;
+}
+#carousel-entry div img {
+  width: auto;
+  max-height: 400px;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+  transition: 2s ease;
+  -webkit-transition: 2s ease;
+  opacity: 0.5;
+  -webkit-opacity: 0.5;
+}
+.btn-share {
+  padding: 9px;
+  float: left;
+  border: 2px solid #6c7a89;
+  height: 45px;
+  width: 45px;
+  font-size: 22px;
+  margin-left: 10px;
+  display: block;
+  cursor: pointer;
+}

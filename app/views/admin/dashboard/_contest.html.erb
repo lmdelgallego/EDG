@@ -1,0 +1,13 @@
+<div class="list-thumb">
+	<div class="thumb-image">
+    <% if contest.cover_photo.blank? %>
+      <img src="" alt="">
+    <% else %>
+      <%= image_tag contest.cover_photo_url(:mini_avatar) %>
+    <% end %>
+	</div>
+	<div class="text">
+    <%= link_to contest.name, admin_contest_path(contest) %>
+    <span><%= number_to_currency(contest.reward, precision: 0) %> - <%= distance_of_time_in_words(Time.zone.now, contest.end_time, false, { highest_measure_only: true } ) %> left - <%= pluralize(contest.entries_count, "Entry") %></span>
+	</div>
+</div>

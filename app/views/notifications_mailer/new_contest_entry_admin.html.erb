@@ -1,0 +1,3 @@
+<p>Hi <%= @admin.name %>,</p>
+<p>Someone has entered a new entry on your contest <%= @contest.name %>. You can check it out <%= link_to "here", contest_url(@contest), target: "_blank" %>.</p>
+<p>Have a great day!</p>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @watch_list.user_id %>
+</p>
+
+<p>
+  <strong>Contest:</strong>
+  <%= @watch_list.contest_id %>
+</p>
+
+<%= link_to 'Edit', edit_watch_list_path(@watch_list) %> |
+<%= link_to 'Back', watch_lists_path %>

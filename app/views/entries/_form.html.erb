@@ -1,0 +1,75 @@
+<%= nested_form_for @entry, url: contest_entries_path(@contest, @entry), method: :post, remote: true, :html => { :multipart => true } do |f| %>
+  <% @categories = @contest.categories.pluck(:name) %>
+ 
+  <div class="form-group">
+    <%= f.label :name, 'Entry Name' %>
+    <%= f.text_field :name, required: true, class: "form-control" %>
+  </div>
+
+  <% if @categories.include?('caption') %>
+    <div class="form-group">
+      <%= image_tag( @contest.caption_image.url, width: "100%" ) unless @contest.caption_image.blank? %>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <% if @categories.include?('caption') %>
+      <%= f.label :description, 'Caption' %>
+    <% else %>
+      <%= f.label :description %>
+    <% end %>
+    <%= f.text_area :description, class: "form-control" , maxlength: @contest.descriptionl, rows: 3 %>
+    <p class="help-block"><%= @contest.descriptionl %> Characters Maximum</p>
+  </div>
+
+  <% if @categories.include?('text') %>
+    <div class="form-group">
+      <%= image_tag( @contest.cover_photo.url, width: "100%" ) unless @contest.cover_photo.blank? %>
+      <%= f.label :body, 'Body'%>
+      <%= f.text_area :body, class: "form-control", rows: 3 %>
+    </div>
+  <% end %>
+
+  <% if @categories.include?('audio')%>
+    <div class="form-group">
+      <%= f.fields_for :entry_attachments, EntryAttachment.new do |a| %>
+        <div class="upload fileinput fileinput-new input-group upfile" data-provides="fileinput">
+          <span class="fileinput-new">Select Audio</span>
+          <span class="fileinput-exists">Change</span>
+          <%= a.file_field :audio_attachment %>
+          <%= a.hidden_field :category_id, :value => 2 %>
+        </div>
+      <% end %> 
+    </div>
+  <% end %>
+
+  <% if @categories.include?('image')%>
+    <div class="form-group">
+      <%= f.fields_for :entry_attachments, EntryAttachment.new do |i| %>
+        <div class="upload fileinput fileinput-new input-group upfile" data-provides="fileinput">
+          <span class="fileinput-new">Select Image</span>
+          <span class="fileinput-exists">Change</span>
+          <% if @contest.multiple_images == 1 %>
+            <%= i.file_field :attachment, :multiple => true %>
+          <% else %>
+            <%= i.file_field :attachment %>
+          <% end %>
+        </div>
+        <%= i.hidden_field :category_id, :value => 1 %>
+      <% end %> 
+    </div>
+  <% end %>
+
+  <% if @categories.include?('video') %>
+    <div class="form-group">
+      <%= f.label :video_url, 'YouTube Video Url' %>
+      <%= f.text_field :video_url, class: "form-control" %>
+    </div>
+  <% end %>
+    
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+<% end %>
+

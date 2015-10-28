@@ -1,0 +1,13 @@
+<div class="share-options down-tooltip">
+  <ul class="social-shre-btn">
+  	<% if entry.entry_attachments.first.blank? %>
+    <li><%= facebook_button static_link: true, url: contest_entry_url(contest, entry), entry_name: entry.name, entry_description: entry.description %></li>
+    <% else %>
+    <li><%= facebook_button static_link: true, url: contest_entry_url(contest, entry), entry_name: entry.name, entry_description: entry.description, entry_image_url: entry_picture_url(entry) unless entry.entry_attachments.first.blank? %></li>
+    <% end %>
+    <li><%= twitter_button static_link: true, url: contest_entry_url(contest, entry), text: "Check this out!" %></li>
+    <li><%= google_plus_button static_link: true, url: contest_entry_url(contest, entry)  %></li>
+    <li><%= linkedin_button static_link: true, url: contest_entry_url(contest, entry)  %></li>
+    <li><a href="mailto:?subject=Check%20this%20entry%20on%20Contagious%20Ideas&body=Please%20support%20this%20entry%20<%= contest_entry_url(contest, entry) %>"><%= image_tag "icn/email.png", alt: "" %></a></li>
+  </ul>
+</div>

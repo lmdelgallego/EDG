@@ -1,0 +1,9 @@
+$container = $('.profile-edit-entry');
+$container.hide();
+$container.html("<%= escape_javascript render(:partial => 'entries/form_edit') %>");
+$container.slideToggle('fast');
+$('#webContent').stop().animate({
+	scrollTop: $container.offset().top - 40
+}, 1000,'easeInOutExpo');
+
+console.log(  $container.offset().top );

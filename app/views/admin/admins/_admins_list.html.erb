@@ -1,0 +1,10 @@
+<% if @admins.empty? %>
+	<div class="emptylist">
+		<span>No Admins yet!</span>
+	</div>
+<% else %>
+<div class="list">
+  	<%= render @admins %>
+</div>
+<% end %>
+<%= will_paginate @admins, :renderer => PaginationLinkRenderer %>

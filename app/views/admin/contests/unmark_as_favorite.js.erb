@@ -1,0 +1,5 @@
+$a_mark = $(" a[href='<%= mark_as_favorite_path(@contest) %>']");
+$a_unmark = $(" a[href='<%= unmark_as_favorite_path(@contest) %>']");
+$a_unmark.hide();
+$a_mark.removeClass("hide");
+$a_mark.show();

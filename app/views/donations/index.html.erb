@@ -1,0 +1,32 @@
+<div class="list-type">
+	<div class="container">
+		<div class="col-lg-12">
+			<div class="header">
+				<span>Donations</span>
+				<a href="<%= new_donation_path %>" class="btn btn-active"><span class="icn cruz"></span>New Donation</a>
+			</div>
+			<table class="donation-table">
+				<thead>
+					<th>Sent</th>
+					<th>Status</th>
+					<th>Amount</th>
+				</thead>
+				<tbody>
+          <% if @donations.empty? %>
+  					<tr>
+  						<td colspan="3">There are no donations to show</td>
+  					</tr>
+          <% else %>
+            <% @donations.each do |donation| %>
+    					<tr>
+    						<td><%= donation.updated_at.strftime("%m/%d/%Y %I:%M %p") %></td>
+    						<td><span class="tag <%= donation.status == "ok" ? 'green' : 'red' %>"><%= donation.status %></span></td>
+    						<td><%= number_to_currency(donation.amount, precision: 0) %></td>
+    					</tr>
+            <% end %>
+          <% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

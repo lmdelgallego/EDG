@@ -1,0 +1,91 @@
+@import 'variables.less';
+
+/* HELP */
+.introHelp{
+	margin-top: 30px;
+	display: block;
+	padding: 100px 0;
+	text-align: center;
+	background: url('../img/bg/bg_team.png');
+	background-size: cover;
+	background-position: center;
+	h1{
+		color: white;
+		&:first-of-type{
+			font-size: 50px;
+			font-weight: 600;
+			line-height: 47px;
+			margin-bottom: 35px;
+		}
+	}
+}
+
+.faqs{
+  margin-top: 20px;
+  .panel{
+    border-width: 0px;
+    &.panel-default{
+      border-color: transparent;
+      box-shadow: none;
+      .panel-heading{
+        background: none;
+        .panel-title{
+          a{
+            font-size: 24px;
+            font-weight: 300;
+            color: @textColor;
+            transition: font-size 0.2s ease-in-out;
+            -webkit-transition: font-size 0.2s ease-in-out;
+            -moz-transition: font-size 0.2s ease-in-out;
+            -ms-transition: font-size 0.2s ease-in-out;
+            -o-transition: font-size 0.2s ease-in-out;
+            &:hover, &:active, &:visited, &:focus{
+              font-size: 26px;
+              text-decoration: none;
+            }
+          }
+        }
+
+        [data-toggle="collapse"]{
+          transition: transform 1s ease;
+          &:after{
+            font-family: 'Glyphicons Halflings';
+            content: "\e072";
+            float: right;
+            color: @primaryColor;
+            font-size: 18px;
+            line-height: 22px;
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+            -webkit-transition: transform 0.3s ease, color 0.3s ease;
+            -moz-transition: transform 0.3s ease, color 0.3s ease;
+            -ms-transition: transform 0.3s ease, color 0.3s ease;
+            -o-transition: transform 0.3s ease, color 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease;
+          }
+          &.collapsed:after{
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+            color: #454444;
+            -webkit-transition: transform 0.3s ease, color 0.3s ease;
+            -moz-transition: transform 0.3s ease, color 0.3s ease;
+            -ms-transition: transform 0.3s ease, color 0.3s ease;
+            -o-transition: transform 0.3s ease, color 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease;
+          }
+        }
+      }
+      .panel-body{
+        font-size: 18px;
+        font-weight: 200;
+        line-height: 32px;
+      }
+    }
+  }
+}

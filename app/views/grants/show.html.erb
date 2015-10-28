@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @grant.user %>
+</p>
+
+<p>
+  <strong>Entry:</strong>
+  <%= @grant.entry %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @grant.status %>
+</p>
+
+<%= link_to 'Edit', edit_grant_path(@grant) %> |
+<%= link_to 'Back', grants_path %>

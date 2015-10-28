@@ -1,0 +1,10 @@
+<%= render partial: "top" %>
+
+<div class="data-zone">
+
+<br />
+<%= link_to "I want to donate", user_basic_info_path(:donor => true), :class => "btn btn-active db" %>
+<br />
+<%= link_to "I want to participate", user_basic_info_path(:donor => false), :class => "btn btn-active db" %>
+
+</div>

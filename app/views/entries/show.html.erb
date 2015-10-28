@@ -1,0 +1,136 @@
+<div class="content">
+  <div class="thumbcontest">
+    <section class="gray-entry">
+      <div class="container">
+        <div class="entry-detail">
+          <div class="head-entry-detail">
+            <h1><%= @entry.name %></h1>
+            <div class="navigation">
+              
+              <% if @index > 0 %>
+                <a href="<%= entry_path(@contest.entries[@index-1]) %>" class="btn green prevmobile"><span class="icn prevmobile"></span></a>
+                <a href="<%= entry_path(@contest.entries[@index-1]) %>" class="btn gray bprev"><span class="icn prev"></span>Previous entries</a>
+                <% end %>
+                <a href="<%= contest_path(@contest) %>" class="btn gray view"><span class="icn prev"></span>View contest</a>
+                <% if @index < @contest.entries.size - 1 %>
+                <a href="<%= entry_path(@contest.entries[@index+1]) %>" class="btn gray bnext">Next entries<span class="icn next"></span></a>
+                <a href="<%= entry_path(@contest.entries[@index+1]) %>" class="btn green nextmobile"><span class="icn nextmobile"></span></a>
+              <% end %>
+             </div> 
+             <h1 class="mobiletitle"><%= @entry.name %></h1>
+          </div>
+
+          <div class="content-entry-detail">
+            <% if @contest.show_entry_user_name || @contest.status == "finished"%>
+              <div class="user-thumbnail">
+                <a href ="<%= user_path(@entry.user) %>">
+                  <div class="images">
+                    <% if @entry.user.profile_image.blank? %>
+                      <%= image_tag "icn/placeholder-profile-user.png", alt: "Author" %>
+                    <% else %>
+                      <%= image_tag @entry.user.profile_image_url(:thumb), alt: "", width: "32px", height: "32px"%>
+                    <% end %>
+                  </div>
+                  <h5>By <%= @entry.user.username  %></h5>
+                </a>
+              </div>
+            <% end %>
+            
+            <p><%= simple_format(@entry.description)%></p>
+            <% if @contest.categories.pluck(:name).include?("image")%>
+            
+              <div class="entry-image-slide">
+                <ul class="slides">
+                  <% @entry.entry_attachments.where(category_id: 1).each do |a|  %>
+                    <% unless a.attachment.nil? %>
+                      <li>
+                        <span>
+                          <%= image_tag a.attachment.url, alt: "entry" %>
+                        </span>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+          
+            <% end %>
+            
+            <% @entry.entry_attachments.where(category_id: 2).each do |a|  %>
+              <% unless a.attachment.nil? %>
+                <div>
+                  <div class="player-audio" data-url="<%= a.audio_attachment.url %>">
+                    <div id="jquery_jplayer" class="jp-jplayer"></div>
+                    <div id="jp_container" class="jp-audio">
+                      <div class="jp-type-single">
+                        <div class="jp-gui jp-interface">
+                            <ul class="jp-controls">
+                                <li><a href="javascript:;" class="jp-play" tabindex="1"><%= image_tag "icn/icn_play.png", alt: "" %></a></li>
+                                <li><a href="javascript:;" class="jp-pause" tabindex="1"><%= image_tag "icn/icn_pause.png", alt: "" %></a></li>
+                            </ul>            
+                        </div>
+                        <div class="jp-no-solution">
+                            <span>Update Required</span>
+                            To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %> 
+            
+            <% if @entry.contest.categories.pluck(:name).include?('caption')%>
+              <%= image_tag @entry.contest.caption_image.url, alt: "entry" %>
+            <% end %>
+
+            <% if @entry.video_url %>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=@entry.video_url_format%>" frameborder="0" allowfullscreen></iframe>
+            <% end %>
+
+            <% unless @entry.body.nil? %>
+              <p><%= simple_format(@entry.body) %></p>
+            <% end %>
+          </div>  
+
+          <div class="contest-thumb" id='entry-<%= @entry.id %>'> 
+             <div class="foot-thumb">
+                
+                <div>
+                  <%= link_to upvote_contest_entry_path(@contest, @entry), class: "btn-upvote #{'logrequired' unless current_user.present? }", method: :post, remote: true do %>
+                    <span class="icn heart"></span>
+                    <span  id class="upvote-count"><%= @entry.upvotes_count %></span>
+                  <% end %>
+                  <div class="share-cloud">
+                    <div class="btn-share">
+                      <span class="icn share"></span>
+                    </div>
+                    <%= render partial: 'entries/social', locals: { contest: @contest, entry: @entry} %>
+                  </div>
+                </div>
+
+             </div>
+          </div> 
+        </div>
+    </div>  
+  </section>    
+
+    <div class="container">
+      <div class="col-lg-12">
+        <div class="row">
+          <h3>Leave your comment</h3>
+          <% if user_signed_in? %>
+            <%= render 'comments/form' %>
+          <% else %>
+            <span>Please login to comment <%= link_to "Login", new_user_session_path(referer_path: request.path) %></span>
+          <% end %>
+        </div>
+        <br/>
+        <div class="row">
+          <%= render @comments %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

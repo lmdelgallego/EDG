@@ -1,0 +1,51 @@
+<%= form_for @admin, url: admin_admin_path(@admin), method: :put do |f| %>
+  <div>
+      <div class="fileinput fileinput-new upload-user" data-provides="fileinput">
+        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+          <% if @admin.profile_image.blank? %>
+            <%= image_tag "icn/icon_uploadimg.png", alt: "", :class => "icnuploadimg" %>
+          <% else %>
+              <%= image_tag(@admin.profile_image_url) %>
+          <% end %>
+        </div>
+        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+        </div>
+        <div>
+          <span class="btn btn-active btn-file">
+              <span class="fileinput-new">Select</span>
+              <span class="fileinput-exists">Change</span>
+              <%= f.file_field :profile_image %>
+          </span>
+          <a href="#" class="btn btn-bordergrey fileinput-exists" data-dismiss="fileinput">Remove</a>
+        </div>
+      </div>
+      <% unless @admin.profile_image.blank? %>
+        <div>
+          <label><%= f.check_box :remove_profile_image %> Remove this picture</label>
+        </div>
+      <% end %>
+  </div>
+	<div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+	</div>
+	<div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+	</div>
+  <div class "field">
+    <%= f.select(:email_frequency, [['Daily',1], ['Every 3 days',3], ['Weekly',7]], {}, { class: 'selectpicker'})%>
+  </div>
+	<div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+	</div>
+	<div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+	</div>
+	<div class="actions">
+    <%= f.submit "Save" %>
+    <a href="<%= params[:action] == 'profile_settings' ? admin_dashboard_path : admin_admins_path %>" class="canceladmin btn btn-bordergrey">Cancel</a>
+	</div>
+<% end %>

@@ -1,0 +1,9 @@
+<% content_for (:stripe_js) { javascript_include_tag "https://js.stripe.com/v2/" } %>
+<% content_for (:stripe_meta) { tag :meta, :name => "stripe-key", :content => STRIPE_PUBLISHABLE_KEY } %>
+<div class="head-forms">	
+	<div class="data-zone">
+		<h1>Premium Account</h1>
+		<%= render 'form' %>
+	</div>	
+</div>
+

@@ -1,0 +1,40 @@
+<% if options[:static_link] %>
+  <%= render :layout => "shareable/partials/button_wrapper", locals: {:options => options} do %>
+    <%= render "shareable/partials/link", :options => options.merge(:url=>"https://www.facebook.com/dialog/feed?app_id=#{options[:app_id]}&link=#{options[:url]}&feature=share&display=page&name=#{options[:entry_name]}&description=#{options[:entry_description]}&picture=#{options[:entry_image_url]}&redirect_uri=#{contest_url(@contest)}") %>
+  <% end %>
+<% else %>
+<div id="fb-root"></div>
+  <% if !options[:button_only] && !options[:turbolinks] %>
+    <%= output_once :facebook do %>
+      <%= render "shareable/partials/scripts/facebook", :app_id => options[:app_id] %>
+    <% end %>
+  <% end %>
+  <%= render :layout => "shareable/partials/button_wrapper", locals: {:options => options} do %>
+<div class="fb-like"
+  <%= html_attributes(options.slice(:url, :send, :layout, :show_faces, :width, :action, :font, :colorscheme, :ref, :share, :kid_directed_site), :data => true) %>
+></div>
+  <% end %>
+  <% if options[:turbolinks] && !options[:button_only] %>
+    <%= output_once :facebook do %>
+<script>
+  if (typeof window.facebookLoaded == 'undefined') {
+    var facebookLoaded = false;
+  }
+  var __loadFacebook = function() {
+    if (facebookLoaded !== true) {
+      $('head').append("<script><%= raw(render 'shareable/partials/scripts/head/facebook', :app_id=>options[:app_id]) %><\/script>");
+    }
+  };
+  if (typeof $.turbo == 'undefined') {
+    $(function() {
+      return __loadFacebook();
+    });
+  }
+  //for jquery.turbolinks
+  else {
+    __loadFacebook();  
+  }
+</script>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,31 @@
+<div class="data-zone complete-info">
+  <%= form_for(@user2) do |f| %>
+  <div>
+    <%= f.text_field :street_address, :required => true, placeholder: "ADDRESS LINE 1 *" %>
+  </div>
+  <div>
+    <%= f.text_field :address_2, placeholder: "ADDRESS LINE 2" %>
+  </div>
+
+  <div>
+    <%= f.text_field :city, :required => true, placeholder: "CITY *" %>
+  </div>
+
+  <div>
+    <%= f.collection_select(:state_id, State.all, :id, :name, {:required => true},{ :class => "selectpicker" } )%>
+  </div>
+  
+  <div>
+    <%= f.text_field :zipcode, :required => true,  placeholder: "ZIP CODE *" %>
+  </div>
+  <div>
+    <%= f.text_field :tax, :required => true, placeholder: "SSN OR TAX ID *" %>
+  </div>
+  
+  <%= f.submit "Save" %>
+  <% end %>
+  <div class="links-forms-container">
+    <a class="left" href ="<%= privacy_path %>" target="_blank" >Terms and Services</a><span class="left">&nbsp;&nbsp;-&nbsp;&nbsp; </span>
+    <a class="left" href ="<%= help_path %>" target="_blank" >Help</a>
+  </div>
+</div>

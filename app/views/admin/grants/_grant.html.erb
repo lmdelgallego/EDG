@@ -1,0 +1,19 @@
+<div class="list-thumb" id="grant-<%= grant.id %>">
+	<div class="thumb-image">
+    <% if grant.contest.cover_photo.blank? %>
+      <img src="" alt="">
+    <% else %>
+      <%= image_tag grant.contest.cover_photo_url(:mini_avatar) %>
+    <% end %>
+	</div>
+	<div class="text">
+    <%= link_to grant.user.username, admin_grant_path(grant) %>
+		<span><%= grant.contest.name %> - <%= grant.entry.name %></span>
+	</div>
+	<div class="icn-type <%= grant.contest.categories.first.name %>type">
+		<span class="icn <%= grant.contest.categories.first.name %>icon"></span>
+	</div>
+	<div class="actions-users">
+    <%= link_to "View", admin_grant_path(grant) %>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div id="readrules" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+        <div class="modal-body">
+            <div>
+                <h1><%= @contest.name %></h1>
+                <h3>Competition Type/Genre: <%= @contest.categories.pluck(:name).join(", ").capitalize %></h3>
+                <p><span>Sponsor: </span><%= @contest.sponsor.blank? ? '-' :  @contest.sponsor %></p>
+                <p><span>Award Amount: </span><%= number_to_currency(@contest.reward, precision: 0) %></p>
+                <p><span>Duration: </span><%= pluralize(days_count(@contest.end_time - @contest.start_date), "day") %></p>
+                <p><span>Start Date: </span><%= @contest.start_date.strftime("%B %-d") %></p>
+                <p><span>End Date: </span><%= @contest.end_time.strftime("%B %-d")%> and <%= contest_time_left(@contest) %></p>
+                <p><span>Maximum Entries per User: </span><%= @contest.max_entries_per_user %></p>
+                <p><span>Judging Criteria: </span><%= simple_format(@contest.judging_criteria) %></p>
+                <p><span>Additional details: </span><%= simple_format(@contest.additional_details) %></p>
+            </div>
+        </div>
+    </div>
+</div>

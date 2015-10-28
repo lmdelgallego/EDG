@@ -1,0 +1,49 @@
+<% @contest = entry.contest %>
+<div class="contest-thumb <%= 'winner' if entry.winner %>" data-winner-name="<%= entry.user.username %>" data-winner-url="<%= entry_path(entry)%>" id='entry-<%= "#{entry.id}" %>'>
+  <div class="head-thumb">
+    <% if params[:controller] == "users" %>
+    <a href="<%= entry_path(entry) %>" class="detailentry" target="_blank" data-link-winner="<%= entry_path(entry) %>">
+    <% else %>
+    <a href="<%= entry_path(entry) %>" class="detailentry" role="button" data-toggle="modal" data-url="<%= contest_entry_url(@contest, entry, format: :js) %>">
+    <% end %>
+      <div class="img">
+        <% case @contest.categories.first.name %>
+        <% when  "image" %>
+          <%= image_tag entry.attachment.url, alt: "" %>
+        <% when "audio" %>
+          <%= image_tag "misc/audio1.png", alt: "" %>
+        <% when "caption" %>
+          <%= image_tag @contest.caption_image.url, alt: "" %>
+        <% when "text" %>
+          <%= image_tag "misc/text1.png", alt: "" %>
+        <% end %>
+      </div>
+      <div class="foot-ovrly">
+        <% if @contest.show_entry_user_name || @contest.status == "finished" %>
+          <span><%= link_to entry.user.username, entry.user  %> - </span>
+        <% end %>
+        <span><%= entry.created_at.strftime("%B %d, %Y at %l:%M %p") %></span>
+      </div>
+    </a>
+    <a class='winner-state detailentry' href='#detailcontest' role='button' data-toggle='modal' data-url=''><%= image_tag '/misc/winner.png', alt: "" %><span>Entry Winner</span><span>By <%= entry.user.username  %> </span></a>
+  </div>
+  <div class="foot-thumb">
+    <h1><a href="<%= entry_path(entry) %>"><%= entry.name %></a></h1>
+    <p><%= entry.description.truncate(75) %></p>
+
+    <div>
+      <%= link_to upvote_contest_entry_path(@contest, entry), class: "btn-upvote #{'logrequired' unless current_user.present? }", method: :post, remote: true do %>
+        <span class="icn heart"></span>
+        <span class="upvote-count"><%= entry.upvotes_count %></span>
+      <% end %>
+      <div class="share-cloud">
+        <div class="btn-share">
+          <span class="icn share"></span>
+        </div>
+        <%= render partial: 'entries/social', locals: { contest: @contest, entry: entry} %>
+      </div>
+    </div>
+    <span></span>
+  </div>
+</div>
+

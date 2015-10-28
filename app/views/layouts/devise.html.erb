@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+      <meta charset="utf-8">
+      <title>Contagious Ideas</title>
+      <meta name="description" content="">
+      <meta name="author" content="Ricardo De León - Amparo Luna">
+      <meta name="viewport" content="width=device-width">
+      <link rel="shortcut icon" href="/favicon.ico">
+      <%= stylesheet_link_tag    'application', media: 'all' %>
+      <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+      <%= yield :stripe_js %>
+      <%= yield :stripe_meta %>
+      <%= csrf_meta_tags %>
+  </head>
+
+<body>
+
+  <div class="head-forms">
+
+    <div class="logotype">
+      <h1 class="logo"><a href="<%= root_path %>">EDG</a></h1>
+    </div>
+
+    <%= yield %>
+
+  </div>
+
+  <footer class="footer-login">
+      <div class="col-lg-12">
+          <div class="">
+              <p>©2014 EDG.com All Rights Reserved.</p>
+          </div>
+      </div>
+  </footer>
+  
+  <%= render "layouts/flashes" %>
+
+  <!-- JS
+  ========================================= -->
+  <%= javascript_include_tag 'application' %>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
+  <script type="text/javascript">
+    $('.selectpicker').selectpicker();
+  </script>
+
+</body>
+</html>

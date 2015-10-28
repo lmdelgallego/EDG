@@ -1,0 +1,107 @@
+/* ABOUT */
+.introAbout {
+  margin-top: 30px;
+  display: block;
+  padding: 100px 0;
+  text-align: center;
+  background: url('../img/bg/banner_about.png');
+  background-size: cover;
+  background-position: center;
+}
+.introAbout h1 {
+  color: white;
+}
+.introAbout h1:first-of-type {
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 47px;
+  margin-bottom: 35px;
+}
+.introAbout h1:last-of-type {
+  font-weight: lighter;
+  font-size: 20px;
+  line-height: 34px;
+}
+.stats-about {
+  overflow: hidden;
+  display: block;
+}
+.stats-about .stat {
+  height: 100px;
+  text-align: center;
+  display: table;
+}
+.stats-about .stat > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.stats-about .stat > div span {
+  font-weight: 300;
+  font-size: 37px;
+  display: block;
+}
+.stats-about .stat > div span:last-of-type {
+  font-size: 18px;
+}
+.worksmission {
+  background-color: white;
+  text-align: center;
+}
+.worksmission h2 {
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.worksmission p {
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 200;
+}
+.students {
+  padding: 30px 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.students h2 {
+  margin-bottom: 40px;
+}
+.students .members {
+  position: relative;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+.students .members h3 {
+  font-size: 24px;
+}
+.students .members p {
+  font-size: 18px;
+  font-weight: lighter;
+  margin-top: 30px;
+  line-height: 44px;
+}
+@media screen and (min-width: 768px), screen and (min-width: 992px) {
+  .introAbout h1:first-of-type {
+    font-size: 60px;
+  }
+  .introAbout h1:last-of-type {
+    font-size: 26px;
+  }
+  .stats-about .stat {
+    height: 170px;
+  }
+  .students {
+    padding: 90px 0;
+  }
+  .students .members {
+    height: 565px;
+    margin-bottom: 10px;
+    padding: 60px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .worksmission {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+}

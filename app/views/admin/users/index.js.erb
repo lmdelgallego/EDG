@@ -1,0 +1,2 @@
+$("span.title").html('Users (<%= escape_javascript(page_entries_info @users, html: false) %>)');
+$("div.users-page").html('<%= escape_javascript(render "users_list") %>');

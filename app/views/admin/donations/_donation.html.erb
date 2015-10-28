@@ -1,0 +1,20 @@
+<div class="list-thumb">
+	<div>
+		<div class="thumb-image">
+      <% if donation.user.profile_image.blank? %>
+			  <%= image_tag "icn/jhon_doe_pic.png", alt: "" %>
+      <% else %>
+        <%= image_tag donation.user.profile_image_url(:thumb) %>
+      <% end %>
+		</div>
+		<span><%= donation.user.full_name %> donated <%= number_to_currency(donation.amount, precision: 2) %></span>
+	</div>
+	<span><%= distance_of_time_in_words(Time.zone.now, donation.created_at, false, { highest_measure_only: true } ) %> ago</span>
+  <% unless params[:controller] == "admin/dashboard" %>
+	<div class="actions-users">
+    <% unless donation.user.email.blank? %>
+		  <a href="mailto:<%= donation.user.email %>">Send Email</a>
+    <% end %>
+	</div>
+  <% end %>
+</div>

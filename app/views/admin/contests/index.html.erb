@@ -1,0 +1,41 @@
+<div class="top-admin-content">
+	<span class="title mt0">Contests (<%= page_entries_info @contests, html: false %>)</span>
+	<!-- <div class="filter-menu-left">
+	   <div  id="sort-filter-open-admin" data-url="<%= admin_contests_path(status: 'open', format: :js) %>" class="btn green medium" >Open</div>
+	   <div id="sort-filter-closed-admin" data-url="<%= admin_contests_path(status: 'closed', format: :js) %>" class="btn gray medium" >Closed</div>
+  </div>  -->
+ 
+	<div class="search">
+    <%= link_to "New", new_admin_contest_path, class: "btn btn-active"%>
+	</div>
+</div>
+<div class="filters-head">
+  <div class="filter-menu-left">
+      <select class="selectpicker" id="admin-filter-dropdown">
+      <option data-url="status=active">Open</option>
+      <option data-url="status=closed">Pending for a winner</option>
+      <option data-url="status=finished">Close</option>
+      <option data-url="status=pending">No open yet</option>
+    </select>
+  </div> 
+  <div class="filter-menu-right">
+      <a class="btn green medium menu-mobile"><span></span><span></span><span></span></a>
+      <ul class="btn-list">
+          <li class='all-free-premium active' data-url="" ><a hrf="#" >All</a></li>
+          <li class='all-free-premium' data-url="premium=0" ><a hrf="#" >Free</a></li>
+          <li class='all-free-premium' data-url="premium=1" ><a hrf="#" >Premium</a></li>
+      </ul>
+      <select class="selectpicker" id="admin-sort-filter-dropdown">
+        <option data-url="">All</option>
+        <option data-url="type=text">Text</option>
+        <option data-url="type=image">Image</option>
+        <option data-url="type=audio">Audio</option>
+        <option data-url="type=caption">Caption</option>
+        <option data-url="type=video">Video</option>
+    </select>
+  </div>
+</div>
+
+<div class="active-contest contest-admin">
+  <%= render "contests_list" %>
+</div>

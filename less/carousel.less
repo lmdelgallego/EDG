@@ -1,0 +1,125 @@
+@import 'variables.less';
+/* CARUSEL */
+#carousel-home{
+	margin-bottom: 51px;
+	.carousel-indicators{
+		bottom: -30px;
+		margin-left: 0px;
+		left: 0px;
+		width: 100%;
+		li{
+			background-color: @secondaryColor;
+			border-radius: 0px;
+			border: none;
+			display: block;
+			float: left;
+			margin: 0px 7px 0px 0px;
+			height: 10px;
+			&:last-child{
+				margin-right: 0px;
+			}
+		}
+		.active {
+		    background-color: @primaryColor;
+		    height: 10px;
+		    margin: 0px 7px 0px 0px;
+		}
+	}
+}
+
+.carousel {
+	.carousel-control{
+		color: @secondaryColor;
+		background-color: lighten(@borderColor, 5%);
+		position: absolute;
+		top: 45%;
+		width: 29px;
+		height: 37px;
+		font-size: 20px;
+		padding-top: 4px;
+		font-weight: 100;
+		opacity: 1;
+		text-shadow: none;
+		&.left,&.right{
+			background-image: none;
+		}
+		&.left{
+			left: -15px;
+		}
+		&.right{
+			right: -15px;
+		}
+	}
+}
+
+#carousel-testimonio{
+	background-image: url(../img/bg/bgtestimonials.png);
+	.carousel-caption{
+		text-align: left;
+		left: 10%;
+		right: 10%;
+	}
+	.item{
+		height: 300px;
+	}
+	img{
+		margin-top: 17px;
+    margin-left: 33%;
+		width: 32%;
+	}
+	.carousel-control{
+		color: @secondaryColor;
+		background-color: lighten(@borderColor, 5%);
+		position: absolute;
+		top: 45%;
+		width: 29px;
+		height: 37px;
+		font-size: 20px;
+		padding-top: 4px;
+		font-weight: 100;
+		opacity: 1;
+		text-shadow: none;
+		&.left,&.right{
+			background-image: none;
+		}
+		&.left{
+			left: -15px;
+		}
+		&.right{
+			right: -15px;
+		}
+	}
+}
+
+
+@media (min-width: 992px) {
+	#carousel-testimonio{
+		img{
+			margin-top: 30px;
+	    margin-left: 30px;
+			width: auto;
+		}
+		.carousel-caption{
+			left: 30%;
+			top: 5%;
+			.name{
+				font-size: 20px;
+				color: white;
+				text-transform: uppercase;
+				line-height: 21px;
+				small{
+					font-size: 14px;
+					text-transform: none;
+					margin-left: 20px;
+					line-height: 15px;
+					color: white;
+				}
+			}
+			p{
+				font-weight: lighter;;
+				font-size: 15px;
+				line-height: 44px;
+			}
+		}
+	}
+}

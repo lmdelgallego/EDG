@@ -1,0 +1,25 @@
+<div class="top-admin-content">
+	<span class="title mt0">Plans</span>
+</div>
+
+<div class="activity users-page">
+  <div class="list">
+	 <% @plans.each do |plan| %>
+		<div class="list-thumb" id="plan-<%= plan.id %>">
+      <div>
+        <span><%= plan.name %></span>
+      </div>
+      <span> <%= plan.number_of_entries %> entries per user</span>
+
+      <div class="right">
+        <span class="icn card"></span>
+        <span><%= number_to_currency(plan.price) %></span>
+      </div>
+      <div class="actions-users">
+        <%= link_to "Edit", edit_admin_plan_path(plan) %>
+       <!--  <%= link_to "Delete", admin_plan_path(plan), :method => :delete, remote: true, data: { confirm: "Are you sure you want to delete this user?" } %> -->
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

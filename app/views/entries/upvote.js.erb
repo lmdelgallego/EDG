@@ -1,0 +1,4 @@
+$('#entry-<%= "#{@entry.id}" %> .upvote-count').html('<%= @entry.reload.upvotes_count %>');
+if ($("#entry-detail .upvote-count").length > 0){
+  $("#entry-detail .upvote-count").html('<%= @entry.reload.upvotes_count %>');
+}

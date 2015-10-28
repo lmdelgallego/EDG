@@ -1,0 +1,75 @@
+<div class="top-admin-content">
+	<span class="title mt0"><%= link_to "Back", admin_contests_path(status: 'active'), class: "btn btn-bordergrey" %></span>
+	<div class="search">
+    <% unless @contest.closed? || @contest.pending? %>
+      <% if @contest.paused? %>
+        <%= link_to "Resume", resume_admin_contest_path(@contest), class: "btn btn-paused", method: :put %>
+      <% else %>
+        <%= link_to "Pause", pause_admin_contest_path(@contest), class: "btn btn-active", method: :put %>
+      <% end %>
+    	<% if @contest.private %>
+        <%= link_to "Share", share_private_contest_admin_contest_path(@contest), class: "btn btn-active" %>
+      <% end %>
+    <% end %>
+    <%= link_to "Edit", edit_admin_contest_path(@contest), class: "btn btn-active" unless @contest.has_winner? %>
+    <%= link_to "Delete", admin_contest_path(@contest), class: "btn btn-active", :method => :delete, data: { confirm: "Are you sure?" } %>
+	</div>
+</div>
+
+<div class="head-contest">
+	<div class="header-contest-show">
+		<div class="left-info">
+			<span><%= @contest.name %></span>
+			<p><%= simple_format(@contest.description.html_safe) %></p>
+		</div>
+		<div class="right-info">
+			<div>
+				<span class="icn type<%= @contest.categories.first.name %>"></span>
+				<span><%= @contest.categories.first.name.capitalize %></span>
+			</div>
+			<div>
+				<span class="icn pricecontest"></span>
+				<span><%= number_to_currency(@contest.reward, precision: 0) %></span>
+			</div>
+			<div>
+				<span class="icn daysleft"></span>
+				<span>
+          <%= contest_time_left(@contest) %>
+        </span>
+			</div>
+		</div>
+	  <div class="bg"><%= image_tag @contest.cover_photo.url(:cover) unless @contest.cover_photo.blank? %></div>
+	</div>
+	<div class="overlaycontest"></div>
+</div>
+<div class="stats-admin">
+	<div class="stats-div">
+		<div>
+			<span><%= @visitors %></span>
+			<span><%= "Visitor".pluralize(@visitors) %></span>
+		</div>
+		<div>
+			<span><%= @contest.entries_count %></span>
+			<span><%= "Submission".pluralize(@contest.entries_count) %></span>
+		</div>
+		<div>
+			<span><%= @contest.start_date.strftime("%B %-d") %></span>
+			<span>Start Date</span>
+		</div>
+		<div>
+			<span><%= @contest.end_time.strftime("%B %-d") %></span>
+			<span>End Date</span>
+		</div>
+	</div>
+</div>
+
+<span class="title entry-title"><%= pluralize(@contest.entries_count, "Entry") %></span>
+<% if @entries.empty? %>
+	<div class="emptylist">
+		<span>No Entries yet!</span>
+	</div>
+<% else %>
+<div class="active-contest contest-admin">
+  <%= render "entries_list" %>
+</div>
+<% end %>

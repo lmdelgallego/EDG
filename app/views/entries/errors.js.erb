@@ -1,0 +1,5 @@
+$("#entryform").empty();
+$(".step1").addClass("hide");
+$(".step2").addClass("hide");
+$(".step3 p").html("<%= escape_javascript(@errors) %>");
+$(".step3").removeClass("hide");

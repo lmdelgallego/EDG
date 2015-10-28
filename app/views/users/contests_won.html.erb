@@ -1,0 +1,53 @@
+<div class="container profile-user">
+  <div class="profile-edit-entry">
+   
+  </div>  
+  
+  <div class="head-contest-options npt">
+    <div class="filter-menu">
+      <ul>
+        <li>
+          <a href="<%= user_path(@user) %>" >Entries</a>
+        </li>
+        <li>
+          <a href="#" class ="active">Contests Won</a>
+        </li>
+        <% if current_user && current_user.id == @user.id%>
+        <li>
+          <a href="<%= edit_user_profile_path %>" >Profile Info</a>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+<div class="col-lg-12">
+
+  <div class="row">
+
+
+    <div class="col-md-4">
+      <%= render partial: "user_information" %>
+    </div>
+
+
+    <div class="recent-contests col-md-8">
+      <div class="post contest-list">
+        <% if @contests.empty? %>
+          <div class="empty-entries">
+            <span class="icon"><%= image_tag "icn/icon_emptyentries.png" %></span>
+            <span class="text">No Contests Yet</span>
+          </div>
+        <% else %>
+          <%= render partial: @contests, locals: {column_class: 'col-lg-3'} %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+</div>
+

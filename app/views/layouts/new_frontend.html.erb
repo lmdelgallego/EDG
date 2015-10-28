@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+      <meta charset="utf-8">
+      <title>Contagious Ideas</title>
+      <meta name="description" content="">
+      <meta name="author" content="Ricardo De León - Francisco Duran - Laura Garcia - Amparo Luna">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <link rel="shortcut icon" href="/favicon.ico">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <%= stylesheet_link_tag 'new_front_manifest', media: 'all' %>
+      <%= yield :stripe_js %>
+      <%= yield :stripe_meta %>
+      <%= csrf_meta_tags %>
+  </head>
+
+<body>
+
+  <!-- Application Manifest for Views using new Frontend -->
+  <!-- See application.html.erb for old views -->
+
+  <%= render 'shared/new_header' %>
+
+  <%= yield %>
+
+  <%= render 'shared/footer' %>
+
+  <!-- Overlay -->
+  <div class="over"></div>
+
+  <!-- Confirmation Success Messagge -->
+  <div class="confirmation overlay hide">
+    <div>
+      <div class="step1">
+        <span class="icnprocess"><%= image_tag "icn/icon_process.png", alt: "" %></span>
+        <span class="text">Processing, Please Wait...</span>
+      </div>
+      <div class="step2 hide">
+        <span class="smile"><%= image_tag "icn/icon_smile.png", alt: "" %></span>
+        <span class="text">Thank You!</span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada eros sit amet nulla pellentesque rutrum. Maecenas et luctus nulla. Suspendisse semper dui et volutpat porta. Sed condimentum a magna ac pulvinar.</p>
+        <a href="#" class="btn btn-active db">Sweet</a>
+      </div>
+      <div class="step3 hide">
+        <span class="smile"><%= image_tag "icn/icon_sad.png", alt: "" %></span>
+        <span class="text">Error, please check again!</span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada eros sit amet nulla pellentesque rutrum. Maecenas et luctus nulla. Suspendisse semper dui et volutpat porta. Sed condimentum a magna ac pulvinar.</p>
+      </div>
+    </div>
+  </div>
+  <!-- End Confirmation Success Messagge -->
+
+  <!-- Log Required -->
+  <%= render "layouts/flashes" %>
+  <!-- End Log Required -->
+
+  <%= javascript_include_tag 'application' %>
+  <%= yield :javascript_includes %>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
+
+</body>
+</html>

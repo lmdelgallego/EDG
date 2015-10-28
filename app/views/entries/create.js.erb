@@ -1,0 +1,13 @@
+
+
+console.log("Borro el form");
+$(".step1").addClass("hide");
+$(".step2").removeClass("hide");
+$('.contest-entries').prepend('<%= escape_javascript(render @entry) %>');
+$("#new_entry").find("input[type=text], textarea").val("");
+if ($("div.empty-entries")){
+  $("div.empty-entries").remove();
+}
+$(".stats-numbers:last-child span:first-child").html('<%= @contest.entries_count %>');
+$(".stats-numbers:last-child span:last-child").html('<%= "Submission".pluralize(@contest.entries_count) %>');
+$(".entries").html('<%= pluralize(@contest.entries_count, "Entry") %>');

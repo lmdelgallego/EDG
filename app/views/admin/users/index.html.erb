@@ -1,0 +1,15 @@
+<div class="top-admin-content">
+	<span class="title mt0">Users (<%= page_entries_info @users, html: false %>)</span>
+	<div class="search">
+		<fieldset>
+			<span class="icn search"></span>
+      <%= form_tag({}, method: :get, remote: true) do %>
+        <%= search_field_tag "search", params[:search], placeholder: "Type and press enter" %>
+      <% end %>
+		</fieldset>
+	</div>
+</div>
+
+<div class="activity users-page">
+  <%= render "users_list" %>
+</div>

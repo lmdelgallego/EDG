@@ -1,0 +1,6 @@
+$("#new_donation input[type=text]").attr('disabled', false);
+$('#new_donation input[type=submit]').attr('disabled', false);
+$(".step1").addClass("hide");
+$(".step2").addClass("hide");
+$(".step3 p").html("<%= escape_javascript(@errors) %>");
+$(".step3").removeClass("hide");

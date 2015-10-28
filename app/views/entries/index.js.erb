@@ -1,0 +1,23 @@
+$('.filter-menu a.active').removeClass('active');
+$('.filter-menu li.active').removeClass('active');
+<% if params[:order_by].present? %>
+  $(".filter-menu a[href='/contests/<%= @contest.slug %>/entries?order_by=<%= params[:order_by] %>']").addClass('active');
+  $(".filter-menu a[href='/contests/<%= @contest.slug %>/entries?order_by=<%= params[:order_by] %>']").parent().addClass('active');
+<% else %>
+  $(".filter-menu a[href='/contests/<%= @contest.slug %>/entries?order_by=recent']").addClass('active');
+  $(".filter-menu a[href='/contests/<%= @contest.slug %>/entries?order_by=recent']").parent().addClass('active');
+<% end %>
+
+<% if params[:page].present? %>
+  $('.entries-container').append('<%= escape_javascript(render @entries) %>');
+<% else %>
+  $(".icnloading_ajax").toggle();
+  $('.entries-container').html('<%= escape_javascript(render @entries) %>');
+  $('a.load-more-items').show();
+<% end %>
+$('a.load-more-items').attr('href', '<%= contest_entries_path(@contest, page: @entries.next_page, order_by: params[:order_by]) %>');
+
+<% if @entries.current_page == @entries.total_pages %>
+  $('a.load-more-items').attr('href', "#");
+  $('a.load-more-items').hide();
+<% end %>

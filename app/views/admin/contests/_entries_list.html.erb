@@ -1,0 +1,4 @@
+<div class="list">
+  <%= render partial: "entry", collection: @entries %>
+</div>
+<%= will_paginate @entries, :renderer => PaginationLinkRenderer %>

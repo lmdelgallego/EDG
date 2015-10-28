@@ -1,0 +1,24 @@
+<div class="top-admin-content">
+	<span class="title mt0">Donations (<%= page_entries_info @donations, html: false %>)</span>
+</div>
+
+<div class="stats-admin mb40">
+	<div class="stats-div">
+		<div>
+			<span><%= Donation.successful.count %></span>
+			<span>Donations</span>
+		</div>
+		<div>
+			<span><%= number_to_currency(Donation.total_amount, precision: 0) %></span>
+			<span>All-time</span>
+		</div>
+		<div>
+			<span><%= number_to_currency(Donation.this_month.total_amount, precision: 0) %></span>
+			<span>This month</span>
+		</div>
+	</div>
+</div>
+
+<div class="activity mb40">
+  <%= render "donations_list" %>
+</div>

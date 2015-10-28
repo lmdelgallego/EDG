@@ -1,0 +1,67 @@
+<div class="data-zone complete-info">
+  <%= nested_form_for @user, url: user_basic_info_path do |f| %>
+
+  <span class="text mb20">Complete your Profile</span>
+    <div>
+      <% if @user.profile_image.blank? %>
+        <span class="label-form">Upload a Profile Photo</span>
+      <% else %>
+        <%= image_tag(@user.profile_image_url(:thumb)) %>
+        <span class="label-form">Change Profile Photo</span>
+      <% end %>
+      <div class="fileinput fileinput-new" data-provides="fileinput">
+        <span class="btn btn-active btn-file"><span class="fileinput-new">Select</span><span class="fileinput-exists">Change</span><%= f.file_field :profile_image %> </span>
+        <span class="fileinput-filename"></span>
+        <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+      </div>
+    </div>
+  <% if @user.email == '' %>
+    <div>
+      <%= f.text_field :email, placeholder: "Email" %>
+    </div>
+  <% end %>
+  <% if @user.username.nil? %>
+    <div>
+      <%= f.text_field :username, placeholder: "USERNAME *" %>
+    </div>
+  <% end %>
+  <!-- <div>
+    <%= f.text_field :city, placeholder: "CITY" %>
+  </div>
+
+  <div>
+    <%= f.collection_select(:state_id, State.all, :id, :name, {:include_blank => "Select state"},{ :class => "selectpicker" } )%>
+  </div>
+  
+  <div>
+    <%= f.text_field :zipcode, placeholder: "ZIP CODE" %>
+  </div>
+
+  <div class="countcharacter">
+      <%= f.text_area :description, :maxlength=>"500", placeholder: "ABOUT ME" %>
+    <div id="textarea_feedback"></div>
+  </div> 
+
+   <%= f.fields_for :studies do |study| %>
+    <div>
+      <p class="loan-number">Alma Mater</p>
+      <%= study.autocomplete_field :alma_mater_id, autocomplete_alma_mater_name_users_path, :id_element => '#some_element' , placeholder: 'ALMA MATER', value: study.object.alma_mater.blank? ? "" : study.object.alma_mater.name%>
+    </div>
+     <div><%= study.collection_select(:degree_id, Degree.all, :id, :name, {:include_blank => "Degree earned"},{ :class => "selectpicker" } ) %></div>
+     <div><%= study.autocomplete_field :major_id, autocomplete_major_name_users_path, :id_element => '#some_element' , placeholder: 'MAJOR COURSE OF STUDY', value: study.object.major.blank? ? "" : study.object.major.name %></div>
+     <div><%= study.autocomplete_field :minor_id, autocomplete_minor_name_users_path, :id_element => '#some_element', placeholder: 'MINOR COURSE OF STUDY', value: study.object.minor.blank? ? "" : study.object.minor.name %></div>
+     <div class="onyl-year-month"><br/><%= study.text_field :graduation_date, class: "date" , placeholder: 'GRADUATION DATE', value: study.object.graduation_date.blank? ? "" : study.object.graduation_date.strftime("%m-%Y")%></div>
+     <% unless study.index == 0 %>
+      <%= study.link_to_remove "Remove" %></td>
+     <% end %>
+  <% end %>
+
+  <%= f.link_to_add "Add another Alma mater", :studies, class: "btn-addloan" %>
+  </br>
+  <div>
+    <%= f.text_field :amount, placeholder: 'TOTAL EDUCATIONAL EXPENSES', class: "loan-amount", data: { a_sign: "$", a_dec: ".", a_sep: "," }  %>
+  </div> -->
+
+  <%= f.submit "Save" %>
+  <% end %>
+</div>

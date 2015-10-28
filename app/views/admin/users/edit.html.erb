@@ -1,0 +1,6 @@
+<span class="title mt0">Editing User <%= @user.full_name %></span>
+<div class="data-zone">
+  <%= nested_form_for @user, url: admin_user_path, method: :put do |f| %>
+	  <%= render partial: 'form', locals: { f: f } %>
+  <% end %>
+</div>

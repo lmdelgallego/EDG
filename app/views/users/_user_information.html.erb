@@ -1,0 +1,37 @@
+<!-- User information -->
+<div class="profile-info">
+    <div class="photo col-md-12">
+        <% if @user.profile_image.blank? %>
+          <%= image_tag "icn/placeholder-profile-user.png", class: "img-responsive", width: "100%" %>
+        <% else %>
+          <%= image_tag(@user.profile_image_url(:main), class: "img-responsive", width: "100%") %>
+        <% end %>
+    </div>
+    <div class="info">
+      <span class="title"><%= @user.username %></span>
+      <% if @user.has_social? %>
+        <ul class="profile-social">
+        <% ["twitter", "facebook", "google", "linkedin"].each do |provider| %>
+          <% social_profile = @user.social_profile_for_provider(provider) %>
+          <% provider_class = html_class_for_provider(provider) %>
+          <% unless social_profile.nil? %>
+            <li><a href="<%= social_profile.profile_url %>" class="<%= provider_class %>" target="_blank"><span class="icn <%= provider_class %>profile"></span></a></li>
+          <% end %>
+        <% end %>
+        </ul>
+      <% end %>
+      <% if @user.education_data == 0%>
+        <% @user.studies.each do |study| %>
+          <% unless  study.major.nil? %>
+            <span>Major in <%= study.major.name %></span><br/>
+          <% end %>
+          <% unless study.minor.nil? %>
+            <span>Minor in <%= study.minor.name %></span><br/>
+          <% end %>
+          <span><%= study.alma_mater.nil? ? "" : study.alma_mater.name %></span><br/>
+        <% end %>
+      <% end %>
+      <p><%= @user.description %></p>
+    </div>
+</div>
+<!-- End User information -->

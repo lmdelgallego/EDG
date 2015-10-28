@@ -1,0 +1,27 @@
+<% is_winner = @contest.has_winner? && entry.winner %>
+<div class="list-thumb" id="entry-<%= entry.id %>">
+	<div class="thumb-image">
+    <% if @contest.categories.pluck(:name).include?("caption") %>
+      <%= image_tag @contest.caption_image.url, alt: "" %>
+    <% end %>
+    <% if @contest.categories.pluck(:name).include?("image") %>
+      <%= image_tag entry.entry_attachments.first.attachment.url, alt: "" %>
+    <% end %>
+	</div>
+	<div class="text">
+		<%= link_to "#{'(WINNER) ' if is_winner }" + entry.name, contest_entry_path(@contest, entry), target: "_blank", class: "entry-name #{'winner-entry' if is_winner }" %>
+		<span>By <%= link_to entry.user.full_name, entry.user, target: "_blank"  %> - <%= distance_of_time_in_words(Time.zone.now, entry.created_at, false, { highest_measure_only: true } ) %> ago - <%= entry.upvotes_count %> votes</span>
+	</div>
+	<div class="icn-type">
+		<span class="icn <%= entry.contest.categories.first.name %>icon"></span>
+	</div>
+	<div class="actions-users">
+	<% if @contest.closed? || @contest.finished?%>
+      <%= link_to "Mark as Winner", winner_admin_contest_entry_path(@contest, entry), :method => :put, remote: true, data: { confirm: "Are you sure you want to set this entry as the winner?" }, class: "mark-as-winner #{ 'hide' if is_winner}"   %>
+    <%= link_to "Undo Winner", undo_winner_admin_contest_entry_path(@contest, entry), :method => :put, remote: true, data: { confirm: "Are you sure you want to set this entry as no winner?" }, class: "undo-winner #{ 'hide' unless is_winner}" %>
+    <% end %>
+    <%= link_to "Send email", re_send_email_admin_contest_entry_path(@contest, entry), :method => :put, remote: true, data: { confirm: "Are you sure you want to send again the email to the winner?" }, class: "#{ 'hide' unless is_winner}"   %>
+    <%= link_to "View", contest_entry_path(@contest, entry), target: "_blank" %>
+    <%= link_to "Delete", admin_contest_entry_path(@contest, entry), :method => :delete, remote: true, data: { confirm: "Are you sure you want to delete this entry?" } %>
+	</div>
+</div>

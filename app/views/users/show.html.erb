@@ -1,0 +1,56 @@
+<div class="container profile-user">
+  <div class="profile-edit-entry">
+   
+  </div>  
+  
+  <div class="head-contest-options npt">
+    <div class="filter-menu">
+      <ul>
+        <li>
+          <a href="#" class="active">Entries</a>
+        </li>
+        <li>
+          <a href="<%= contests_won_user_path(@user)%>" >Contests Won</a>
+        </li>
+        <% if current_user && current_user.id == @user.id%>
+        <li>
+          <a href="<%= edit_user_profile_path %>" >Profile Info</a>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+<div class="col-lg-12">
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <%= render partial: "user_information" %>
+    </div>
+
+
+    <div class="entries-user entries-container profile-contest col-md-8">
+      <% if @entries.empty? %>
+        <div class="empty-entries">
+          <span class="icon"><%= image_tag "icn/icon_emptyentries.png", alt: "" %></span>
+          <span class="text">No Entries Yet</span>
+        </div>
+      <% else %>
+        <%= render @entries %>
+      <% end %>
+    </div>
+
+    <% unless @entries.current_page == @entries.total_pages %>
+      <%= link_to user_path(@user, page: @entries.next_page), class: "load-more-items", remote: true do %>
+        <span class="loadingmore"><span class="icn loadmore"></span>Loading, please wait...</span>
+      <% end %>
+    <% end %>
+
+  </div>
+
+
+</div>
+
+</div>
+

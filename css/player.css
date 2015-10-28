@@ -1,0 +1,103 @@
+/* PLAYER */
+.playa input[type=range] {
+  -webkit-appearance: none;
+  -moz-apperance: none;
+  background-color: #D2D7D8;
+  border: 0px solid #6c7a89;
+  height: .5em;
+  border-radius: .5em;
+  width: 100%;
+  margin: -2px;
+  padding: 0 !important;
+  line-height: 0;
+}
+.playa input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-apperance: none;
+  z-index: 3;
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  border: 1px solid #6c7a89;
+  background-color: #6c7a89;
+}
+.playa .btn-group {
+  border: 1px solid #6c7a89;
+  background-color: #ECF0F1;
+}
+.playa .btn {
+  border-width: 0px;
+  background-color: transparent;
+}
+.playa .btn.btn-play {
+  padding-bottom: 11px;
+}
+.playa .btn.disabled {
+  padding: 21px 8px;
+}
+.playa .btn.progress {
+  border-bottom-width: 1px;
+}
+.playa .btn.time {
+  border: 1px solid #6c7a89;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+.playa .btn.time,
+.playa .btn.btn-vol {
+  padding: 12px;
+}
+.playa .btn.progress,
+.playa .btn.btn-play {
+  border-bottom-width: 1px;
+}
+.playa .btn.btn-play,
+.playa .btn.btn-vol {
+  border-right-width: 1px;
+}
+.playa .thumbnail {
+  width: 96%;
+  padding: 1.5%;
+}
+.playa .btn-group {
+  text-align: center;
+}
+@media (max-width: 979px) and (min-width: 768px) {
+  .col-md-4 .playa,
+  .playa.col-md-4 {
+    padding: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .playa .btn-group .btn {
+    padding: 4px 3px;
+    margin: auto;
+    display: inline-block;
+    float: none;
+  }
+  .playa .btn.progress {
+    padding: 8px 5px;
+  }
+  .playa .btn.progress,
+  .playa .btn.btn-play {
+    border-bottom-width: 0px;
+  }
+  .playa.col-md-2 .btn-group .btn,
+  .playa.col-md-1 .btn-group .btn,
+  .col-md-2 .playa .btn-group .btn,
+  .col-md-1 .playa .btn-group .btn {
+    width: 100%;
+    display: block;
+  }
+  .col-md-4.playa,
+  .col-md-3 .playa,
+  .col-md-2 .playa,
+  .col-md-1 .playa,
+  .playa.col-md-4,
+  .playa.col-md-3,
+  .playa.col-md-2,
+  .playa.col-md-1 {
+    padding: 0;
+    overflow: hidden;
+  }
+}

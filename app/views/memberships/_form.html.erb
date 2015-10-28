@@ -1,0 +1,20 @@
+<%= form_for(@membership, :html => {:class => "pay-suscription"}) do |f| %>
+  <%= f.hidden_field :stripe_token %>
+  <% if @referer_path%>
+  	<%= f.hidden_field :referer_path, :value => @referer_path %>
+  <%end%>
+  <div class="payment-fields input-group">
+    <div>
+    <%= f.select :mode, options_for_select([['Monthly '+number_to_currency(@plan.price),'m'],['Yearly '+number_to_currency(@plan.anual_price),'a']]), {}, { :class => 'selectpicker', :id => 'account-type-m' } %>
+    <br/>
+  </div>
+    <div><%= text_field_tag :user_full_name, nil, name: nil, placeholder: "Cardholder name" %></div>
+    <div class="parent"><%= text_field_tag :card_number, nil, name: nil, placeholder: "Credit Card Number" %></div>
+    <div class="parent-group">
+	    <div class="child"><%= text_field_tag :card_month, nil, name: nil, placeholder: "MM/YY", :onkeypress => 'return isNumberKey(event);'%></div>
+	    <div class="child"><%= text_field_tag :card_code, nil, name: nil, placeholder: "CVC" %></div>
+    </div>
+  </div>
+  <%= f.submit 'Pay ', :class => 'submit_class_name_here'%>
+<% end %>
+

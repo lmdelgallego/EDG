@@ -1,0 +1,13 @@
+<div class="share-options down-tooltip">
+  <ul class="social-shre-btn list-inline">
+  	<% if contest.cover_photo.blank? %>
+    <li><%= facebook_button static_link: true, url: contest_url(contest), contest_name: contest.name, contest_description: contest.description %></li>
+    <% else %>
+    <li><%= facebook_button static_link: true,  url: contest_url(contest), contest_name: contest.name, contest_description: contest.description, contest_image_url: contest.cover_photo_url unless contest.cover_photo.blank? %></li>
+    <% end %>
+    <li><%= twitter_button static_link: true, url: contest_url(contest), text: "Check this out!" %></li>
+    <li><%= google_plus_button static_link: true, url: contest_url(contest)  %></li>
+    <li><%= linkedin_button static_link: true, url: contest_url(contest)  %></li>
+    <li><a href="mailto:?subject=Check%20this%20contest%20on%20Contagious%20Ideas&body=Please%20support%20this%20contest%20<%= contest_url(contest) %>"><%= image_tag "icn/email.png", alt: "" %></a></li>
+  </ul>
+</div>

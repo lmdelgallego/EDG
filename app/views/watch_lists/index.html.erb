@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Watch Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Contest</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @watch_lists.each do |watch_list| %>
+      <tr>
+        <td><%= watch_list.user_id %></td>
+        <td><%= watch_list.contest_id %></td>
+        <td><%= link_to 'Show', watch_list %></td>
+        <td><%= link_to 'Edit', edit_watch_list_path(watch_list) %></td>
+        <td><%= link_to 'Destroy', watch_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Watch list', new_watch_list_path %>

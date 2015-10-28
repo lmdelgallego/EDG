@@ -1,0 +1,14 @@
+<% if @results.empty? %>
+   $('a.load-more-results').attr('href', "#");
+    $('a.load-more-results').hide();
+<% else %>
+  <% @results.each do |result| %>
+  $('ol').append('<li><%= result.searchable_type == "User" ? result.searchable.username : result.searchable.name %> - <%= result.searchable_type %></li>')
+  <% end %>
+  $('a.load-more-results').attr('href', "/search?search=<%=params[:search]%>&page=<%=@results.next_page%>");
+  
+  <% if @results.current_page == @results.total_pages %>
+    $('a.F').attr('href', "#");
+    $('a.load-more-results').hide();
+  <% end %>
+<% end %>

@@ -1,0 +1,32 @@
+<%= form_for @donation, url: donations_path(format: :js) do |f| %>
+  <div class="field">
+    <%= f.label :amount, "I want to make a donation of" %><br>
+    <%= f.text_field :amount, :class => "makedonation", data: { a_sign: "$", a_dec: ".", a_sep: ","} %>
+  </div>
+  <div class="field check">
+    <%= f.check_box :anonymous %>
+    <label>Make it Anonymous</label>
+  </div>
+  <div class="field">
+    <label>Cardholder Name</label>
+    <%= text_field_tag :card_name, nil, name: nil, required: true %>
+  </div>
+  <div class="field">
+    <label>Card Number</label>
+    <%= text_field_tag :card_number, nil, name: nil, required: true %>
+  </div>
+  <div class="field date">
+    <label>Expiration Date</label>
+    <%= text_field_tag :card_month, nil, name: nil, class: "month", required: true %>
+    <span>/</span>
+    <%= text_field_tag :card_year, nil, name: nil, class: "year", required: true %>
+  </div>
+  <div class="field w70">
+    <label>CVV</label>
+    <%= text_field_tag :card_code, nil, name: nil, required: true %>
+  </div>
+  <%= f.hidden_field :stripe_token %>
+  <div class="actions">
+    <%= f.submit "Send", class: "#{ 'logrequired' unless current_user.present? }"%>
+  </div>
+<% end %>
