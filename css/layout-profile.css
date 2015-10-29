@@ -15,6 +15,50 @@
 .entries-container {
   padding: 0px;
 }
+#profileInfo div {
+  margin-bottom: 15px;
+}
+#profileInfo div.row {
+  margin-bottom: 0px;
+}
+#profileInfo fieldset {
+  margin-bottom: 15px;
+}
+.social-conect ul li {
+  margin-right: 42px;
+  text-align: center;
+}
+.social-conect ul li.facebook a {
+  background: #5071aa;
+}
+.social-conect ul li.twitter a {
+  background: #68c6e1;
+}
+.social-conect ul li.linkedin a {
+  background: #247cb4;
+}
+.social-conect ul li.googlep a {
+  background: #da2714;
+}
+.social-conect ul li a {
+  border-radius: 0px;
+  color: #FFFFFF;
+  font-size: 15px;
+  display: inline-block;
+  line-height: 35px;
+  margin-bottom: 5px;
+  position: relative;
+  text-align: center;
+  width: 40px;
+  height: 35px;
+}
+.social-conect ul li span {
+  color: #aaa;
+  display: block;
+}
+.academic-info {
+  border-bottom: 1px dashed #c0c7ce;
+}
 @media (min-width: 992px) {
   .tab-content,
   .entries-container {

@@ -13,6 +13,9 @@ body {
 .borderAll {
   border: 2px solid #eaefef;
 }
+.borderBottom {
+  border-bottom: 2px solid #eaefef;
+}
 .bgLigten {
   background-color: #eaefef;
 }

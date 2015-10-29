@@ -13,6 +13,7 @@
 				<!-- Optional theme -->
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+				<link rel="stylesheet" href="../app/assets/stylesheets/datepicker3.css">
 				<link rel="stylesheet" href="css/style.css">
 				<!--[if IE]>
 								<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -65,7 +66,7 @@
 							<div class="navMenu col-md-12 col-xs-12">
 								<div class="row">
 									<div class="collapse navbar-collapse col-md-12">
-										
+
 										<ul class="nav navbar-nav col-md-4 toLeft">
 												<li class="active"><a href="index.html">Home</a></li>
 												<li><a href="about.html">About</a></li>
@@ -81,7 +82,7 @@
 												<li><a href="help.html">Help</a></li>
 												<li class="visible-xs"><a href="#login">login</a></li>
 												<li><a href="contact.html">Contact</a></li>
-												
+
 										</ul>
 									</div><!--.nav-collapse -->
 								</div>
@@ -94,14 +95,14 @@
 	<div id="pageContainer" class="pageDetails col-md-12 col-xs-12">
 		<div class="row">
 			<div  class="container">
-				
+
 
 					<div id="tabs-profile" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="row">
 							<div class="filter-menu pull-right">
 								<ul class="list-inline" role="tablist">
-									<li class="active" role="presentation"><a href="#entries" aria-controls="entries" role="tab" data-toggle="tab" aria-expanded="true">ENTRIES <span class="caret"></span></a></li>
-									<li role="presentation"><a href="#watchlist" aria-controls="watchlist" role="tab" data-toggle="tab" aria-expanded="true">WATCHLIST<span class="caret"></span></a></li>
+									<li role="presentation"><a href="#entries" aria-controls="entries" role="tab" data-toggle="tab" aria-expanded="true">ENTRIES <span class="caret"></span></a></li>
+									<li class="active" role="presentation"><a href="#watchlist" aria-controls="watchlist" role="tab" data-toggle="tab" aria-expanded="true">WATCHLIST<span class="caret"></span></a></li>
 									<li role="presentation"><a href="#contest-won" aria-controls="contest-won" role="tab" data-toggle="tab" aria-expanded="true">CONTEST WON<span class="caret"></span></a></li>
 									<li role="presentation"><a href="#profileInfo" aria-controls="contest-won" role="tab" data-toggle="tab" aria-expanded="true">PROFILE INFO<span class="caret"></span></a></li>
 								</ul>
@@ -128,10 +129,10 @@
 							</p>
 						</div>
 					</div>
-					
+
 					<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 tab-content">
-						
-							<div id="entries" role="tabpanel" class="tab-pane fade in active" aria-labelledby="entries-tab">
+
+							<div id="entries" role="tabpanel" class="tab-pane fade" aria-labelledby="entries-tab">
 								<div class="entries-container col-md-12">
 
 										<a href="" class="entry col-md-12 col-xs-12">
@@ -161,7 +162,7 @@
 
 								</div>
 							</div>
-							
+
 							<div id="watchlist" role="tabpanel" class="tab-pane fade" aria-labelledby="watchlist-tab">
 								<a href="#">
 									<section class="postContest col-lg-4 col-xs-12">
@@ -322,7 +323,7 @@
 							</div>
 
 							<div id="contest-won" role="tabpanel" class="tab-pane fade" aria-labelledby="contest-won-tab">
-								
+
 								<a href="#">
 									<section class="postContest col-lg-4 col-xs-12">
 										<div class="col-lg-12">
@@ -481,8 +482,177 @@
 								</a>
 							</div>
 
-							<div id="profileInfo" role="tabpanel" class="tab-pane fade" aria-labelledby="profileInfo-tab">
-								ji
+							<div id="profileInfo" role="tabpanel" class="tab-pane fade in active" aria-labelledby="profileInfo-tab">
+								<form class="" action="index.html" method="post">
+
+									<div class="social-conect col-lg-8">
+										<label>Conect with</label>
+										<ul class="list-inline">
+											<li class="facebook">
+												<a href="/users/auth/facebook">
+												<i class="fa fa-facebook"></i>
+												</a>
+												<span>Facebook</span>
+											</li>
+
+											<li class="twitter">
+												<a href="/users/auth/twitter">
+												<i class="fa fa-twitter"></i>
+												</a>
+												<span>Twitter</span>
+											</li>
+
+											<li class="linkedin">
+												<a href="/users/auth/linkedin">
+												<i class="fa fa-linkedin"></i>
+												</a>
+												<span>Linkedin</span>
+											</li>
+
+											<li class="googlep">
+												<a href="/users/auth/google">
+												<i class="fa fa-google-plus"></i>
+												</a>
+												<span>Google+</span>
+											</li>
+										</ul>
+									</div>
+
+									<div class="col-lg-4">
+										<button type="button" class="btn btn-primary">
+										  Upgrade to Premium
+										</button>
+										<button type="button" class="btn btn-danger">
+										  Upgrade to Premium
+										</button>
+										<p id="subs-message" class="hide ">Subscription canceled. You have premium privileges until 9999-88-88</p>
+									</div>
+
+									<div class="file-upload col-lg-12">
+											<label >Upload a Profile Photo</label>
+											<div class="input-group">
+					                <span class="input-group-btn">
+					                    <span class="btn btn-primary btn-file">
+					                        Browse&hellip; <input type="file" multiple>
+					                    </span>
+					                </span>
+					                <input type="text" class="form-control" readonly>
+													<a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+					            </div>
+									</div>
+
+									<div class="personal-dates col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div class="row">
+											<h4>Personal information</h4>
+											<fieldset class="inline col-md-6">
+		                      <input autofocus="autofocus" placeholder="Full Name" type="text" value="Luis Del Gallego" name="user[full_name]" id="user_full_name" class="col-lg-12">
+		                  </fieldset>
+											<fieldset class="inline col-md-6">
+                          <input placeholder="Username" type="text" value="lmdelgallego" name="user[username]" id="user_username" class="col-lg-12">
+                      </fieldset>
+											<fieldset class="inline col-md-12">
+                          <input autofocus="autofocus" disabled="disabled" placeholder="Email" type="email" value="luis.delgallego+1@ideaware.co" name="user[email]" id="user_email" class="col-lg-12">
+                      </fieldset>
+											<fieldset class="inline col-md-12">
+                          <textarea maxlength="500" placeholder="About me* - 500 chars." name="user[description]" id="user_description" class="col-lg-12" rows="4"></textarea>
+                      </fieldset>
+										</div>
+									</div>
+
+									<div class="user-dates col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+										<div class="row">
+											<fieldset class="inline col-md-12">
+                          <input placeholder="Address Line 1" type="text" value="" name="user[street_address]" id="user_street_address" class="col-lg-12">
+                      </fieldset>
+                      <fieldset class="inline col-md-12">
+                          <input placeholder="Address Line 2" type="text" value="" name="user[address_2]" id="user_address_2" class="col-lg-12">
+                      </fieldset>
+                      <fieldset class="inline col-md-6">
+                          <input placeholder="City" type="text" value="" name="user[city]" id="user_city" class="col-lg-12">
+                      </fieldset>
+											<fieldset class="inline col-md-6">
+												<select class="form-control">
+													<option selected="selected" value="0">Select state</option>
+													<option  value="1">1</option>
+													<option  value="2">2</option>
+													<option  value="3">3</option>
+													<option  value="4">4</option>
+													<option  value="5">5</option>
+												</select>
+                      </fieldset>
+											<fieldset class="inline col-md-6">
+                          <input placeholder="Zip Code" type="text" value="" name="user[zipcode]" id="user_zipcode" class="col-lg-12">
+                      </fieldset>
+											<fieldset class="inline col-md-12 borderBottom">
+												<div class="checkbox checkbox-success">
+												  <label>
+												    <input type="checkbox" value="" >
+												    Hide personal information
+												  </label>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+
+									<div class="user-dates col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+										<div class="row">
+											<h4>Academic information</h4>
+											<div class="academic-info col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="row">
+													<fieldset class="add-matter col-md-6">
+			                            <input placeholder="ALMA MATTER" value="" data-autocomplete="/users/autocomplete_alma_mater_name" type="text" name="user[studies_attributes][0][alma_mater_id]" id="user_studies_attributes_0_alma_mater_id" class="col-lg-12">
+			                    </fieldset>
+													<fieldset class="inline col-md-6">
+														<select class="form-control">
+															<option selected="selected" value="0">Degree Earned</option>
+															<option  value="1">1</option>
+															<option  value="2">2</option>
+															<option  value="3">3</option>
+															<option  value="4">4</option>
+															<option  value="5">5</option>
+														</select>
+													</fieldset>
+
+													<fieldset class="add-matter col-md-6">
+														<input placeholder="MAJOR COUSER OF STUDY" value="" type="text" class="col-lg-12">
+													</fieldset>
+													<fieldset class="add-matter col-md-6">
+														<input placeholder="MINOR COURSE OF STUDY" value="" type="text" class="col-lg-12">
+													</fieldset>
+													<fieldset class="col-md-6">
+		                          <div class="onyl-year-month">
+		                              <input class="date col-lg-12" placeholder="GRADUATION DATE" value="" type="text" >
+		                          </div>
+		                      </fieldset>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<a class="btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												  Add another Alma mater +
+												</a>
+											</div>
+
+											<fieldset class="col-md-12">
+                              <input placeholder="TOTAL EDUCATIONAL EXPENSES" class="loan-amount col-xs-12 col-sm-12 col-md-12 col-lg-12" data-a-sign="$" data-a-dec="." data-a-sep="," type="text" name="user[amount]" id="user_amount">
+                      </fieldset>
+											<fieldset class="inline col-md-12 ">
+												<div class="checkbox checkbox-success">
+												  <label>
+												    <input type="checkbox" value="" >
+												    Hide academic information
+												  </label>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+
+									<div class="col-lg-12">
+										<button type="button" class="btn btn-primary col-lg-3">
+										  Save
+										</button>
+									</div>
+
+								</form>
 							</div>
 
 					</div>
@@ -518,32 +688,58 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/bootstrap-datepicker.js" ></script>
+	<script src="../app/assets/javascripts/autoNumeric.js" ></script>
 
 		<script type="text/javascript">
 			$(document).ready(function() {
-				var timer = $("#timer");
-				timer.countdown(timer.data('finaldate'), function(event) {
-				     //timer.text(event.strftime('%D days %H:%M:%S'));
-				     var days = $('#days .number');
-				     var hrs = $('#hrs .number');
-				     var min = $('#min .number');
-				     var seg = $('#seg .number');
-					if(event.offset.days > 0) {
-						var days = $('#days .number');
-						days.text(event.strftime('%D'));
-						seg.parents('#seg').remove();
-					}else{
-						days.parents('#days').remove();
-					}
-				     
-				     hrs.text(event.strftime('%H'));
-				     min.text(event.strftime('%M'));
-				     seg.text(event.strftime('%S'));
+				$('.loan-amount').autoNumeric('init');
+				$(".onyl-year-month .date").datepicker({
+					format: "mm-yyyy",
+					startView: 2,
+					minViewMode: 1,
+					autoclose: true
+				});
+				$('.btn-file :file').on('change',function(){
+					var input = $(this),
+					numFiles = input.get(0).files ? input.get(0).files.length : 1,
+					label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+					input.trigger('fileselect', [numFiles, label]);
+				})
 
+				$('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 
-				   });
-			});	
+						var input = $(this).parents('.input-group').find(':text'),
+								log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+						if( input.length ) {
+								input.val(log);
+						} else {
+								if( log ) alert(log);
+						}
+
+				});
+			});
+			$(document).on('nested:fieldAdded', function(event){
+				// this field was just inserted into your form
+				var field = event.field;
+				var count = field.parents('.edit_user').find('.loan-number').length;
+				field.find('.loan-number').each(function(){
+					$(this).text($(this).text() + " #" + count);
+				});
+
+				var loanAmount = field.find('.loan-amount');
+				loanAmount.autoNumeric('init');
+				$('.selectpicker').selectpicker();
+
+				$(".onyl-year-month .date").datepicker({
+					format: "mm-yyyy",
+					startView: 2,
+					minViewMode: 1,
+					autoclose: true
+				});
+
+			});
 		</script>
 </body>
 </html>
