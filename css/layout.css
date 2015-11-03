@@ -43,6 +43,10 @@ body {
   padding-bottom: 10px;
   background-color: white;
 }
+.error-page {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 #headerMenu {
   background-color: #eaefef;
   font-weight: bold;
@@ -72,6 +76,9 @@ body {
 #headerMenu .navbar-brand img {
   width: 40px;
   margin-top: -9px;
+}
+.filterSearch {
+  margin-bottom: 15px;
 }
 #pageContainer {
   margin-top: 5px;

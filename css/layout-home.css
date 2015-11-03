@@ -59,6 +59,7 @@
 }
 .postContest .descrip .entries {
   margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 12px;
 }
 .postContest .descrip .entries span {
@@ -102,6 +103,7 @@
 }
 .showMore {
   margin-top: 60px;
+  text-align: center;
 }
 @media screen and (min-width: 768px), screen and (min-width: 992px) {
   .filterList .nav-stacked > li + li {
